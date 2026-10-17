@@ -100,10 +100,19 @@ susfs_apply() {
 
 	# Adapt the selected SUSFS 4.9 patch for this crDroid kernel.
 	if [[ "$kver" == "4.9" ]]; then
-	    python3 "${REPO_ROOT}/" "$kernel_patch"
+	    ADAPTER="${REPO_ROOT}/patches/adapt_crdroid_susfs.py"
+	
+	    if [[ ! -f "$ADAPTER" ]]; then
+	        die "SUSFS adapter not found: $ADAPTER"
+	    fi
+	
+	    info "adapting SUSFS patch for crDroid kernel ${kver}"
+	    python3 "$ADAPTER" "$kernel_patch" \
+	        || die "failed to adapt SUSFS patch"
 	else
 	    info "Skipping crDroid SUSFS adapter for kernel ${kver}"
 	fi
+	
 	
 	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
 
