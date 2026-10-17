@@ -178,6 +178,26 @@ susfs_apply() {
 	grep -R -nE \
 	'ksu_handle_vfs_fstat|ksu_handle_stat|ksu_su_compat_enabled|ksu_is_init_rc_hook_enabled' \
 	"$KERNEL_DIR/KernelSU" "$KERNEL_DIR/drivers/kernelsu" 2>/dev/null | head -100 || true
+
+	echo "========== SUSFS PATCH DIAGNOSTIC =========="
+	echo "KERNEL_DIR=$KERNEL_DIR"
+	echo "PATCH=$kernel_patch"
+	
+	if [ ! -f "$kernel_patch" ]; then
+	    echo "[ERROR] Patch file does not exist: $kernel_patch"
+	else
+	    (
+	        cd "$KERNEL_DIR" || exit 1
+	        patch --dry-run -p1 --verbose < "$kernel_patch"
+	    ) > /tmp/susfs-patch-diagnostic.log 2>&1 || true
+	
+	    echo "========== FAILED HUNKS =========="
+	    grep -n -i -E \
+	        'FAILED|Hunk|malformed|reversed|cannot find|unexpected end|error:' \
+	        /tmp/susfs-patch-diagnostic.log || true
+	
+	    echo "========== END DIAGNOSTIC =========="
+	fi
 		
 ####################################################################################################
 
