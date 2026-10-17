@@ -140,6 +140,21 @@ susfs_apply() {
 	
 	echo "========== cmdline.c full =========="
 	cat "$KERNEL_DIR/fs/proc/cmdline.c"
+
+	echo "========== STAT FUNCTION DEFINITIONS =========="
+	grep -R -nE \
+	'^[[:space:]]*(int|long|static int)[[:space:]]+(vfs_fstat|vfs_fstatat|vfs_statx_fd|vfs_statx)[[:space:]]*\(' \
+	"$KERNEL_DIR/fs" "$KERNEL_DIR/include"
+	
+	echo "========== SUSFS STAT HOOK SYMBOLS =========="
+	grep -R -nE \
+	'ksu_is_init_rc_hook_enabled|ksu_handle_vfs_fstat|ksu_su_compat_enabled|__ksu_is_allow_uid_for_current|ksu_handle_stat' \
+	"$KERNEL_DIR/KernelSU" "$KERNEL_DIR/drivers" "$KERNEL_DIR/include" 2>/dev/null | head -100
+	
+	echo "========== PATCH STAT RELATED HUNKS =========="
+	grep -nE \
+	'^diff --git a/fs/stat\.c|^@@|vfs_fstat|vfs_fstatat|vfs_statx|ksu_handle_stat|ksu_handle_vfs_fstat' \
+	"$kernel_patch" | head -160
 	
 ####################################################################################################
 
