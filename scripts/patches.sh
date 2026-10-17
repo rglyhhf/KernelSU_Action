@@ -156,7 +156,29 @@ susfs_apply() {
 	grep -nE \
 	'^diff --git a/fs/stat\.c|^@@|vfs_fstat|vfs_fstatat|vfs_statx|ksu_handle_stat|ksu_handle_vfs_fstat' \
 	"$kernel_patch" | head -160 || true
+
+	KERNEL_DIR="$GITHUB_WORKSPACE/kernel_workspace/android-kernel"
+
+	echo "========== VFS INTERFACES =========="
+	grep -R -nE \
+	'vfs_(getattr_nosec|getattr|statx_fd|statx|fstat|fstatat)[[:space:]]*\(' \
+	"$KERNEL_DIR/fs" "$KERNEL_DIR/include/linux" 2>/dev/null || true
 	
+	echo "========== STATX AND KSTAT DEFINITIONS =========="
+	grep -R -nE \
+	'struct kstat|result_mask|KSTAT_QUERY_FLAGS|STATX_SUS_KSTAT' \
+	"$KERNEL_DIR/include/linux" "$KERNEL_DIR/fs" 2>/dev/null | head -100 || true
+	
+	echo "========== SUSFS CURRENT APP UID =========="
+	grep -R -nE \
+	'susfs_is_current_app_uid|susfs_is_inode_sus_kstat|susfs_sus_kstat_spoof_generic_fillattr' \
+	"$KERNEL_DIR" 2>/dev/null | head -100 || true
+	
+	echo "========== RE SUKISU HOOK DECLARATIONS =========="
+	grep -R -nE \
+	'ksu_handle_vfs_fstat|ksu_handle_stat|ksu_su_compat_enabled|ksu_is_init_rc_hook_enabled' \
+	"$KERNEL_DIR/KernelSU" "$KERNEL_DIR/drivers/kernelsu" 2>/dev/null | head -100 || true
+		
 ####################################################################################################
 
 	# Keep the original apply logic and its safety checks.
