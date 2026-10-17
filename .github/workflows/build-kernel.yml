@@ -185,9 +185,29 @@ jobs:
           key: kernel-${{ env.DEVICE }}-${{ env.KSU_VARIANT }}-${{ env.KERNEL_VERSION }}
           max-size: 2G
 
-      - name: Build kernel
-        run: bash scripts/build.sh all
+##############################################################
+#      - name: Build kernel
+#        run: bash scripts/build.sh all
 
+      - name: Build kernel
+        shell: bash
+        run: |
+          set -o pipefail
+          bash scripts/build.sh all 2>&1 | tee build.log
+          rc=${PIPESTATUS[0]}
+
+          echo "===== 编译退出码：$rc ====="
+          echo "===== 搜索编译错误 ====="
+          grep -n -i -B 10 -A 15 -E \
+            'error:|fatal error:|undefined reference|No rule to make target|Error [0-9]+|Killed|Segmentation fault' \
+            build.log | tail -n 250 || true
+
+          echo "===== 编译日志最后 150 行 ====="
+          tail -n 150 build.log
+
+          exit "$rc"
+###################################################################
+          
       - name: Package artifacts
         run: bash scripts/package.sh all
 
