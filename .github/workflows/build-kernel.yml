@@ -186,8 +186,78 @@ jobs:
           max-size: 2G
 
 ##############################################################
+#      - name: Build kernel
+#        run: bash scripts/build.sh all
+
       - name: Build kernel
-        run: bash scripts/build.sh all
+        id: kernel_build
+        shell: bash
+        continue-on-error: true
+        run: |
+          cd "$GITHUB_WORKSPACE/kernel_workspace/android-kernel"
+
+          LOG="$GITHUB_WORKSPACE/build.log"
+          mkdir -p "$(dirname "$LOG")"
+          touch "$LOG"
+
+          {
+            echo "===== Build started: $(date -Is) ====="
+            echo "===== Kernel source: $PWD ====="
+            echo "===== Commit: $(git rev-parse HEAD 2>&1) ====="
+          } | tee -a "$LOG"
+
+          export PATH="$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/bin:$PATH"
+          export KBUILD_BUILD_HOST=Github-Action
+          export KBUILD_BUILD_USER="$(echo '${{ github.actor }}' | tr 'A-Z' 'a-z')"
+
+          set +e
+          bash scripts/build.sh all 2>&1 | tee -a "$LOG"
+          rc=${PIPESTATUS[0]}
+          set -e
+
+          echo "$rc" > "$GITHUB_WORKSPACE/build-exit-code.txt"
+          echo "===== Build exit code: $rc =====" | tee -a "$LOG"
+
+          exit 0
+
+      - name: Print build error report
+        if: always()
+        shell: bash
+        run: |
+          LOG="$GITHUB_WORKSPACE/build.log"
+          RC_FILE="$GITHUB_WORKSPACE/build-exit-code.txt"
+
+          echo "::group::========== 内核编译错误报告 =========="
+
+          if [ -f "$RC_FILE" ]; then
+            RC=$(cat "$RC_FILE")
+          else
+            RC="未知（编译步骤未正常执行或未启动）"
+          fi
+
+          echo "编译退出码：$RC"
+          echo "构建时间：$(date -Is)"
+          echo
+
+          if [ ! -s "$LOG" ]; then
+            echo "错误：没有生成 build.log，请检查编译步骤是否启动。"
+            echo "::endgroup::"
+            exit 0
+          fi
+
+          echo "========== 错误关键词及上下文 =========="
+
+          grep -n -i -B 8 -A 12 -E \
+            'fatal error:|error:|undefined reference|No rule to make target|Error [0-9]+|make(\[[0-9]+\])?: \*\*\*|Killed|Segmentation fault|Input tree has errors|FATAL ERROR|not found|No such file|cannot find|failed|failure|dtc:|ld.lld:|clang: error:|submodule' \
+            "$LOG" || echo "未匹配到常见错误关键词。请检查完整日志末尾。"
+
+          echo
+          echo "========== 最后 160 行完整日志 =========="
+          tail -n 160 "$LOG"
+
+          echo
+          echo "========== 报告结束 =========="
+          echo "::endgroup::"
 ###################################################################
           
       - name: Package artifacts
