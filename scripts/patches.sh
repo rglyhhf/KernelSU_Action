@@ -93,14 +93,14 @@ susfs_apply() {
 	# Apply the legacy adapter only to the original SUSFS v1.5.5 branch.
 	#if [[ "$repo" == "https://gitlab.com/simonpunk/susfs4ksu.git" &&
 	#      "$branch" == "kernel-4.9" ]]; then
-	#    python3 "${REPO_ROOT}/patches/adapt_crdroid_susfs.py" "$kernel_patch"
+	#    python3 "${REPO_ROOT}/" "$kernel_patch"
 	#else
 	#    info "Skipping legacy SUSFS adapter for ${repo} @ ${branch}"
 	#fi
 
 	# Adapt the selected SUSFS 4.9 patch for this crDroid kernel.
 	if [[ "$kver" == "4.9" ]]; then
-	    python3 "${REPO_ROOT}/patches/adapt_crdroid_susfs.py" "$kernel_patch"
+	    python3 "${REPO_ROOT}/" "$kernel_patch"
 	else
 	    info "Skipping crDroid SUSFS adapter for kernel ${kver}"
 	fi
@@ -229,8 +229,6 @@ susfs_apply() {
 	           < "$kernel_patch" ); then
 		die "SUSFS patch is incompatible with this kernel; refusing to continue."
 	fi
-
-	python3 "$GITHUB_WORKSPACE/patches/adapt_crdroid_susfs.py" "$kernel_patch"
 
 	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
