@@ -111,7 +111,7 @@ susfs_apply() {
 
 ############################ 诊断代码 ################################################################
 	echo "========== ACTUAL fs/stat.c =========="
-	sed -n '1,150p' "$KERNEL_DIR/fs/stat.c"
+	sed -n '1,300p' "$KERNEL_DIR/fs/stat.c"
 	
 	echo "========== ACTUAL fs/proc/cmdline.c =========="
 	sed -n '1,75p' "$KERNEL_DIR/fs/proc/cmdline.c"
