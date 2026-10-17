@@ -47,7 +47,7 @@ fdinfo_lines = [
     "+\t\t\t\tgoto out_seq_printf;",
     "+\t\t\t}",
     "+\t\t\tdpath = d_path(&file->f_path, pathname, PAGE_SIZE);",
-    "+\t\t\tif (!dpath) {",
+    "+\t\t\tif (IS_ERR(dpath)) {",
     "+\t\t\t\tgoto out_free_pathname;",
     "+\t\t\t}",
     "+\t\t\tif (kern_path(dpath, 0, &path)) {",
