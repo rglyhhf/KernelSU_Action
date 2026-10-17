@@ -92,45 +92,7 @@ end = text.find("diff --git a/fs/statfs.c b/fs/statfs.c", start)
 
 if start < 0 or end < 0:
     raise SystemExit("Cannot find the expected stat.c patch section.")
-/*
-stat_section = "\n".join([
-    "diff --git a/fs/stat.c b/fs/stat.c",
-    "index 1591e16e9ce35..36021103fce4a 100644",
-    "--- a/fs/stat.c",
-    "+++ b/fs/stat.c",
-    "@@ -15,2 +15,5 @@",
-    " #include <linux/pagemap.h>",
-    "+#if defined(CONFIG_KSU_SUSFS_SUS_KSTAT) || defined(CONFIG_KSU_SUSFS_SUS_MOUNT)",
-    "+#include <linux/susfs_def.h>",
-    "+#endif",
-    " #include <asm/uaccess.h>",
-    "@@ -17,2 +20,6 @@",
-    " #include <asm/unistd.h>",
-    "+#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT",
-#    "+extern void susfs_sus_ino_for_generic_fillattr(unsigned long ino, struct kstat *stat);",
-    "+extern bool susfs_is_inode_sus_kstat(struct inode *inode, bool *out_is_fuse);",
-    "+extern void susfs_sus_kstat_spoof_generic_fillattr(struct inode *inode,",
-    "+\t\t\t\t\t\t\tstruct kstat *stat, u32 result_mask);",
-    "+#endif",
-    "+",
-    " /**",
-    "@@ -27,3 +34,14 @@ void generic_fillattr(struct inode *inode, struct kstat *stat)",
-    " void generic_fillattr(struct inode *inode, struct kstat *stat)",
-    " {",
-    "+#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT",
-    "+\tif (likely(current->susfs_task_state & TASK_STRUCT_NON_ROOT_USER_APP_PROC) &&",
-    "+\t\t\tunlikely(inode->i_state & INODE_STATE_SUS_KSTAT)) {",
-#    "+\t\tsusfs_sus_ino_for_generic_fillattr(inode->i_ino, stat);",
-    "+\t\tstat->mode = inode->i_mode;",
-    "+\t\tstat->rdev = inode->i_rdev;",
-    "+\t\tstat->uid = inode->i_uid;",
-    "+\t\tstat->gid = inode->i_gid;",
-    "+\t\treturn;",
-    "+\t}",
-    "+#endif",
-    " \tstat->dev = inode->i_sb->s_dev;",
-]) + "\n"
-*/
+
 stat_section = "\n".join([
     "diff --git a/fs/stat.c b/fs/stat.c",
     "index 1591e16e9ce35..36021103fce4a 100644",
