@@ -87,6 +87,111 @@ susfs_apply() {
 
 
     # Print the exact reason the SUSFS patch does not apply.
+
+	# Adapt the upstream SUSFS 4.9 patch for crDroid 15.0.
+	python3 - "$kernel_patch" <<'PY'
+	from pathlib import Path
+	import sys
+	
+	patch_file = Path(sys.argv[1])
+	text = patch_file.read_text(encoding="utf-8")
+	tab = "\t"
+	
+	# 1. Adapt fs/notify/fdinfo.c to crDroid's inotify_mark_user_mask().
+	start = text.find("@@ -83,13 +101,44 @@ static void inotify_fdinfo")
+	end = text.find("diff --git a/fs/overlayfs/inode.c", start)
+	
+	if start < 0 or end < 0:
+	    raise SystemExit(
+	        "Cannot locate the expected fdinfo SUSFS hunk; patch was not changed."
+	    )
+	
+	fdinfo_hunk = "\n".join([
+	    "@@ -83,3 +101,34 @@ static void inotify_fdinfo(struct seq_file *m, struct fsnotify_mark *mark)",
+	    " " + tab + "inode_mark = container_of(mark, struct inotify_inode_mark, fsn_mark);",
+	    " " + tab + "inode = igrab(mark->inode);",
+	    " " + tab + "if (inode) {",
+	    "+#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT",
+	    "+" + tab + tab + "u32 mask = mark->mask & IN_ALL_EVENTS;",
+	    "+" + tab + tab + "if (likely(current->susfs_task_state & TASK_STRUCT_NON_ROOT_USER_APP_PROC) &&",
+	    "+" + tab + tab + tab + "unlikely(inode->i_state & INODE_STATE_SUS_KSTAT)) {",
+	    "+" + tab + tab + tab + "struct path path;",
+	    "+" + tab + tab + tab + "char *pathname = kmalloc(PAGE_SIZE, GFP_KERNEL);",
+	    "+" + tab + tab + tab + "char *dpath;",
+	    "+" + tab + tab + tab + "if (!pathname) {",
+	    "+" + tab + tab + tab + tab + "goto out_seq_printf;",
+	    "+" + tab + tab + tab + "}",
+	    "+" + tab + tab + tab + "dpath = d_path(&file->f_path, pathname, PAGE_SIZE);",
+	    "+" + tab + tab + tab + "if (!dpath) {",
+	    "+" + tab + tab + tab + tab + "goto out_free_pathname;",
+	    "+" + tab + tab + tab + "}",
+	    "+" + tab + tab + tab + "if (kern_path(dpath, 0, &path)) {",
+	    "+" + tab + tab + tab + tab + "goto out_free_pathname;",
+	    "+" + tab + tab + tab + "}",
+	    "+" + tab + tab + tab + 'seq_printf(m, "inotify wd:%x ino:%lx sdev:%x mask:%x ignored_mask:%x ",',
+	    "+" + tab + tab + tab + "           inode_mark->wd, path.dentry->d_inode->i_ino,",
+	    "+" + tab + tab + tab + "           path.dentry->d_inode->i_sb->s_dev,",
+	    "+" + tab + tab + tab + "           mask, mark->ignored_mask);",
+	    "+" + tab + tab + tab + "show_mark_fhandle(m, path.dentry->d_inode);",
+	    "+" + tab + tab + tab + "seq_putc(m, '\\n');",
+	    "+" + tab + tab + tab + "iput(inode);",
+	    "+" + tab + tab + tab + "path_put(&path);",
+	    "+" + tab + tab + tab + "kfree(pathname);",
+	    "+" + tab + tab + tab + "return;",
+	    "+out_free_pathname:",
+	    "+" + tab + tab + tab + "kfree(pathname);",
+	    "+" + tab + tab + "}",
+	    "+out_seq_printf:",
+	    "+#endif",
+	])
+	
+	text = text[:start] + fdinfo_hunk + "\n" + text[end:]
+	
+	# 2. Adapt fs/stat.c: add the SUSFS header and generic_fillattr hook
+	# without relying on the upstream patch's old include/comment context.
+	start = text.find("diff --git a/fs/stat.c b/fs/stat.c")
+	end = text.find("diff --git a/fs/statfs.c b/fs/statfs.c", start)
+	
+	if start < 0 or end < 0:
+	    raise SystemExit(
+	        "Cannot locate the expected stat.c SUSFS section; patch was not changed."
+	    )
+	
+	stat_section = "\n".join([
+	    "diff --git a/fs/stat.c b/fs/stat.c",
+	    "index 1591e16e9ce35..36021103fce4a 100644",
+	    "--- a/fs/stat.c",
+	    "+++ b/fs/stat.c",
+	    "@@ -15,1 +15,4 @@",
+	    " #include <linux/pagemap.h>",
+	    "+#if defined(CONFIG_KSU_SUSFS_SUS_KSTAT) || defined(CONFIG_KSU_SUSFS_SUS_MOUNT)",
+	    "+#include <linux/susfs_def.h>",
+	    "+#endif",
+	    "@@ -26,3 +29,16 @@ void generic_fillattr(struct inode *inode, struct kstat *stat)",
+	    "+#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT",
+	    "+extern void susfs_sus_ino_for_generic_fillattr(unsigned long ino, struct kstat *stat);",
+	    "+#endif",
+	    " void generic_fillattr(struct inode *inode, struct kstat *stat)",
+	    " {",
+	    "+#ifdef CONFIG_KSU_SUSFS_SUS_KSTAT",
+	    "+\tif (likely(current->susfs_task_state & TASK_STRUCT_NON_ROOT_USER_APP_PROC) &&",
+	    "+\t\t\tunlikely(inode->i_state & INODE_STATE_SUS_KSTAT)) {",
+	    "+\t\tsusfs_sus_ino_for_generic_fillattr(inode->i_ino, stat);",
+	    "+\t\tstat->mode = inode->i_mode;",
+	    "+\t\tstat->rdev = inode->i_rdev;",
+	    "+\t\tstat->uid = inode->i_uid;",
+	    "+\t\tstat->gid = inode->i_gid;",
+	    "+\t\treturn;",
+	    "+\t}",
+	    "+#endif",
+	    " \tstat->dev = inode->i_sb->s_dev;",
+	]) + "\n"
+	
+	text = text[:start] + stat_section + text[end:]
+	patch_file.write_text(text, encoding="utf-8")
+	print("[+] Applied crDroid 15.0 SUSFS patch adaptations.")
+	PY
+	
 	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
 
 	if ! ( cd "$KERNEL_DIR" &&
