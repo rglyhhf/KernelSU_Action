@@ -17,7 +17,14 @@ if [[ "${KERNEL_VERSION:-}" == "4.9" &&
         echo "[!] SUSFS compatibility file not found: $compat" >&2
         exit 1
     }
-    python3 - "$compat" <<'PYCOMPAT'
+	
+	echo "========== DEBUG SUSFS COMPAT PATH =========="
+	echo "compat=$compat"
+	echo "========== DEBUG SUSFS COMPAT CONTENT =========="
+	nl -ba "$compat" | sed -n '1,80p'
+	echo "========== END DEBUG SUSFS COMPAT =========="
+	
+	python3 - "$compat" <<'PYCOMPAT'
 from pathlib import Path
 import sys
 
