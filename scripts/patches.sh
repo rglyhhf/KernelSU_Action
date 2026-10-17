@@ -193,7 +193,9 @@ susfs_apply() {
 	
 	    echo "========== FAILED HUNKS =========="
 	    awk '
-		/^patching file / { file = $0 }
+		/^(checking|patching) file / {
+		    file = $0
+		}
 		/^Hunk #[0-9]+ FAILED/ {
 		    print ""
 		    print "FAILED FILE: " file
