@@ -79,12 +79,31 @@ susfs_apply() {
 	}
 	[ -n "$kernel_patch" ] && [ -f "$kernel_patch" ] \
 		|| die "no 50_add_susfs_in_*.patch found in ${kp}"
+########################################################################################
+#	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
+#		|| die "the SUSFS kernel patch did not apply cleanly.
+#       This usually means SUSFS_BRANCH does not match your kernel. Detected
+#       kernel ${kver}, used branch '${branch}'."
 
+
+    # Print the exact reason the SUSFS patch does not apply.
+	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
+
+	if ! ( cd "$KERNEL_DIR" &&
+		 patch -p1 --dry-run --force --no-backup-if-mismatch < "$kernel_patch" ); then
+		warn "SUSFS patch failed normal dry-run; trying fuzz=3 for diagnostics"
+		(
+		cd "$KERNEL_DIR"
+		patch -p1 --dry-run --force --fuzz=3 --no-backup-if-mismatch < "$kernel_patch"
+		) || true
+	fi
+
+	# Keep the original apply logic and its safety checks.
 	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
-       This usually means SUSFS_BRANCH does not match your kernel. Detected
-       kernel ${kver}, used branch '${branch}'."
+		 Detected kernel ${kver}, used branch '${branch}'."
 
+#########################################################################################
 	# 3. Patch the KernelSU side -- but only when the variant does not already
 	#    ship SUSFS support. SukiSU-Ultra's 'builtin' branch, for instance,
 	#    declares CONFIG_KSU_SUSFS itself; applying the patch on top conflicts.
