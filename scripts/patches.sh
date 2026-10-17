@@ -192,9 +192,17 @@ susfs_apply() {
 	    ) > /tmp/susfs-patch-diagnostic.log 2>&1 || true
 	
 	    echo "========== FAILED HUNKS =========="
-	    grep -n -i -E \
-	        'FAILED|Hunk|malformed|reversed|cannot find|unexpected end|error:' \
-	        /tmp/susfs-patch-diagnostic.log || true
+	    awk '
+		/^patching file / { file = $0 }
+		/^Hunk #[0-9]+ FAILED/ {
+		    print ""
+		    print "FAILED FILE: " file
+		    print "DETAIL: " $0
+		}
+		/^[0-9]+ out of [0-9]+ hunks FAILED/ {
+		    print "SUMMARY: " $0
+		}
+		' /tmp/susfs-patch-diagnostic.log
 	
 	    echo "========== END DIAGNOSTIC =========="
 	fi
