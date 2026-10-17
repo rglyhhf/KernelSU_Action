@@ -6,6 +6,40 @@
 # failing, because these trees are frequently already partially patched.
 
 set -euo pipefail
+
+# TEMP_BYPASS_RESUKISU_SUSFS_COMPAT_STOP
+# Experimental only: remove ReSukiSU's unconditional SUSFS build stop on 4.9.
+if [[ "${KERNEL_VERSION:-}" == "4.9" &&
+      "${KSU_VARIANT:-}" == "resukisu" &&
+      "${ENABLE_SUSFS:-false}" == "true" ]]; then
+    compat="${KERNEL_DIR:?}/${KSU_DIR:-KernelSU}/kernel/tools/susfs_compat.mk"
+    [[ -f "$compat" ]] || {
+        echo "[!] SUSFS compatibility file not found: $compat" >&2
+        exit 1
+    }
+    python3 - "$compat" <<'PYCOMPAT'
+from pathlib import Path
+import sys
+
+p = Path(sys.argv[1])
+lines = p.read_text().splitlines(keepends=True)
+markers = (
+    "susfs has NOT update with latest KernelSU source",
+    "Please wait simonpunk update",
+    "$(error Please wait susfs update.)",
+)
+missing = [m for m in markers if not any(m in line for line in lines)]
+if missing:
+    raise SystemExit("Expected guard lines not found; refusing to edit: " + ", ".join(missing))
+
+p.write_text("".join(
+    line for line in lines
+    if not any(m in line for m in markers)
+))
+print("[+] Removed the unconditional SUSFS compatibility stop for this test.")
+PYCOMPAT
+fi
+
 # shellcheck source=scripts/lib.sh
 . "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
