@@ -90,7 +90,13 @@ susfs_apply() {
 
 	# Adapt the upstream SUSFS 4.9 patch for crDroid 15.0.
 
-	python3 "${REPO_ROOT}/patches/adapt_crdroid_susfs.py" "$kernel_patch"
+	# Apply the legacy adapter only to the original SUSFS v1.5.5 branch.
+	if [[ "$repo" == "https://gitlab.com/simonpunk/susfs4ksu.git" &&
+	      "$branch" == "kernel-4.9" ]]; then
+	    python3 "${REPO_ROOT}/patches/adapt_crdroid_susfs.py" "$kernel_patch"
+	else
+	    info "Skipping legacy SUSFS adapter for ${repo} @ ${branch}"
+	fi
 	
 	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
 
