@@ -223,6 +223,8 @@ susfs_apply() {
 		die "SUSFS patch is incompatible with this kernel; refusing to continue."
 	fi
 
+	python3 "$GITHUB_WORKSPACE/patches/adapt_crdroid_susfs.py" "$kernel_patch"
+
 	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
 		 Detected kernel ${kver}, used branch '${branch}'."
