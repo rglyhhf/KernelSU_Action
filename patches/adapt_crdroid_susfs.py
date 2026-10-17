@@ -23,69 +23,6 @@ def make_hunk(old_start, new_start, heading, lines):
     return header + "\n" + "\n".join(lines) + "\n"
 
 
-# Adapt the final fdinfo.c hunk to crDroid's original fallback code.
-start = text.find(
-    "@@ -83,6 +107,66 @@ static void inotify_fdinfo(struct seq_file *m, struct fsnotify_mark *mark)"
-)
-end = text.find("diff --git a/fs/overlayfs/inode.c", start)
-
-if start < 0 or end < 0:
-    raise SystemExit("Cannot find the expected fdinfo.c patch section.")
-
-fdinfo_lines = [
-    " \tinode_mark = container_of(mark, struct inotify_inode_mark, fsn_mark);",
-    " \tinode = igrab(mark->inode);",
-    " \tif (inode) {",
-    "+#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT",
-    "+\t\tu32 mask = mark->mask & IN_ALL_EVENTS;",
-    "+\t\tif (likely(current->susfs_task_state & TASK_STRUCT_NON_ROOT_USER_APP_PROC) &&",
-    "+\t\t\t\tunlikely(inode->i_state & INODE_STATE_SUS_KSTAT)) {",
-    "+\t\t\tstruct path path;",
-    "+\t\t\tchar *pathname = kmalloc(PAGE_SIZE, GFP_KERNEL);",
-    "+\t\t\tchar *dpath;",
-    "+\t\t\tif (!pathname) {",
-    "+\t\t\t\tgoto out_seq_printf;",
-    "+\t\t\t}",
-    "+\t\t\tdpath = d_path(&file->f_path, pathname, PAGE_SIZE);",
-    "+\t\t\tif (IS_ERR(dpath)) {",
-    "+\t\t\t\tgoto out_free_pathname;",
-    "+\t\t\t}",
-    "+\t\t\tif (kern_path(dpath, 0, &path)) {",
-    "+\t\t\t\tgoto out_free_pathname;",
-    "+\t\t\t}",
-    "+\t\t\tseq_printf(m, \"inotify wd:%x ino:%lx sdev:%x mask:%x ignored_mask:%x \",",
-    "+\t\t\t\t   inode_mark->wd, path.dentry->d_inode->i_ino,",
-    "+\t\t\t\t   path.dentry->d_inode->i_sb->s_dev,",
-    "+\t\t\t\t   mask, mark->ignored_mask);",
-    "+\t\t\tshow_mark_fhandle(m, path.dentry->d_inode);",
-    "+\t\t\tseq_putc(m, '\\n');",
-    "+\t\t\tiput(inode);",
-    "+\t\t\tpath_put(&path);",
-    "+\t\t\tkfree(pathname);",
-    "+\t\t\treturn;",
-    "+out_free_pathname:",
-    "+\t\t\tkfree(pathname);",
-    "+\t\t}",
-    "+out_seq_printf:",
-    "+#endif",
-    " \t\tseq_printf(m, \"inotify wd:%x ino:%lx sdev:%x mask:%x ignored_mask:0 \",",
-    " \t\t\t   inode_mark->wd, inode->i_ino, inode->i_sb->s_dev,",
-    " \t\t\t   inotify_mark_user_mask(mark));",
-    " \t\tshow_mark_fhandle(m, inode);",
-    " \t\tseq_putc(m, '\\n');",
-    " \t\tiput(inode);",
-    " \t}",
-]
-
-fdinfo_hunk = make_hunk(
-    83,
-    101,
-    "static void inotify_fdinfo(struct seq_file *m, struct fsnotify_mark *mark)",
-    fdinfo_lines,
-)
-text = text[:start] + fdinfo_hunk + text[end:]
-
-
 # Split stat.c changes into small hunks matching crDroid's source layout.
 start = text.find("diff --git a/fs/stat.c b/fs/stat.c")
 end = text.find("diff --git a/fs/statfs.c b/fs/statfs.c", start)
@@ -111,7 +48,7 @@ stat_section = "\n".join([
     "+extern void susfs_sus_kstat_spoof_generic_fillattr(struct inode *inode, struct kstat *stat, u32 result_mask);",
     "+#endif",
     " ",
-    "@@ -68,17 +75,34 @@",
+    "@@ -68,16 +75,33 @@",
     " int vfs_getattr_nosec(const struct path *path, struct kstat *stat,",
     "                      u32 request_mask, unsigned int query_flags)",
     " {",
@@ -151,6 +88,25 @@ stat_section = "\n".join([
 ]) + "\n"
 
 text = text[:start] + stat_section + text[end:]
+
+# The target kernel already implements SUSFS cmdline spoofing.
+# Remove this patch section to prevent duplicate application.
+patch_lines = text.splitlines(keepends=True)
+cmdline_start = next(
+    (i for i, line in enumerate(patch_lines)
+     if line.startswith("diff --git a/fs/proc/cmdline.c ")),
+    None,
+)
+if cmdline_start is not None:
+    cmdline_end = next(
+        (i for i in range(cmdline_start + 1, len(patch_lines))
+         if patch_lines[i].startswith("diff --git ")),
+        len(patch_lines),
+    )
+    del patch_lines[cmdline_start:cmdline_end]
+    text = "".join(patch_lines)
+    print("[+] Removed duplicate fs/proc/cmdline.c patch section.")
+
 patch_file.write_text(text, encoding="utf-8")
 
 print("[+] Generated crDroid-compatible SUSFS patch hunks.")

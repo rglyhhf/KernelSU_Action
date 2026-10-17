@@ -117,11 +117,11 @@ susfs_apply() {
 	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
 
 	if ! ( cd "$KERNEL_DIR" &&
-		 patch -p1 --dry-run --force --no-backup-if-mismatch < "$kernel_patch" ); then
+		 patch -l -p1 --dry-run --force --no-backup-if-mismatch < "$kernel_patch" ); then
 		warn "SUSFS patch failed normal dry-run; trying fuzz=3 for diagnostics"
 		(
 		cd "$KERNEL_DIR"
-		patch -p1 --dry-run --force --fuzz=3 --no-backup-if-mismatch < "$kernel_patch"
+		patch -l -p1 --dry-run --force --fuzz=3 --no-backup-if-mismatch < "$kernel_patch"
 		) || true
 	fi
 
@@ -204,7 +204,7 @@ susfs_apply() {
 	else
 	    (
 	        cd "$KERNEL_DIR" || exit 1
-	        patch --dry-run -p1 --verbose < "$kernel_patch"
+	        patch -l --dry-run -p1 --verbose < "$kernel_patch"
 	    ) > /tmp/susfs-patch-diagnostic.log 2>&1 || true
 	
 	    echo "========== FAILED HUNKS =========="
@@ -234,12 +234,12 @@ susfs_apply() {
 
 	# Stop here until the kernel-specific SUSFS adapter is implemented.
 	if ! ( cd "$KERNEL_DIR" &&
-	       patch -p1 --dry-run --force --no-backup-if-mismatch \
+	       patch -l -p1 --dry-run --force --no-backup-if-mismatch \
 	           < "$kernel_patch" ); then
 		die "SUSFS patch is incompatible with this kernel; refusing to continue."
 	fi
 
-	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
+	( cd "$KERNEL_DIR" && patch -l -p1 --force --no-backup-if-mismatch < "$kernel_patch" ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
 		 Detected kernel ${kver}, used branch '${branch}'."
 
