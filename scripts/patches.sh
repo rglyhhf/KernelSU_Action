@@ -157,7 +157,7 @@ susfs_apply() {
 	'^diff --git a/fs/stat\.c|^@@|vfs_fstat|vfs_fstatat|vfs_statx|ksu_handle_stat|ksu_handle_vfs_fstat' \
 	"$kernel_patch" | head -160 || true
 
-	KERNEL_DIR="$GITHUB_WORKSPACE/kernel_workspace/android-kernel"
+	#KERNEL_DIR="$GITHUB_WORKSPACE/kernel_workspace/android-kernel"
 
 	echo "========== VFS INTERFACES =========="
 	grep -R -nE \
@@ -212,6 +212,17 @@ susfs_apply() {
 ####################################################################################################
 
 	# Keep the original apply logic and its safety checks.
+	#( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
+	#	|| die "the SUSFS kernel patch did not apply cleanly.
+	#	 Detected kernel ${kver}, used branch '${branch}'."
+
+	# Stop here until the kernel-specific SUSFS adapter is implemented.
+	if ! ( cd "$KERNEL_DIR" &&
+	       patch -p1 --dry-run --force --no-backup-if-mismatch \
+	           < "$kernel_patch" ); then
+		die "SUSFS patch is incompatible with this kernel; refusing to continue."
+	fi
+
 	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
 		 Detected kernel ${kver}, used branch '${branch}'."
