@@ -109,6 +109,28 @@ susfs_apply() {
 		) || true
 	fi
 
+############################ 诊断代码 ################################################################
+	echo "========== ACTUAL fs/stat.c =========="
+	sed -n '1,150p' "$KERNEL_DIR/fs/stat.c"
+	
+	echo "========== ACTUAL fs/proc/cmdline.c =========="
+	sed -n '1,75p' "$KERNEL_DIR/fs/proc/cmdline.c"
+	
+	echo "========== SUSFS PATCH: fs/stat.c =========="
+	awk '
+	/^diff --git a\/fs\/stat.c / { p=1 }
+	p { print }
+	/^diff --git / && !/^diff --git a\/fs\/stat.c / && p { exit }
+	' "$kernel_patch"
+	
+	echo "========== SUSFS PATCH: fs/proc/cmdline.c =========="
+	awk '
+	/^diff --git a\/fs\/proc\/cmdline.c / { p=1 }
+	p { print }
+	/^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / && p { exit }
+	' "$kernel_patch"
+####################################################################################################
+
 	# Keep the original apply logic and its safety checks.
 	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
