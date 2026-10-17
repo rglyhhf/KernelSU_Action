@@ -110,6 +110,7 @@ susfs_apply() {
 	fi
 
 ############################ 诊断代码 ################################################################
+
 	echo "========== ACTUAL fs/stat.c =========="
 	sed -n '1,300p' "$KERNEL_DIR/fs/stat.c"
 	
@@ -129,6 +130,17 @@ susfs_apply() {
 	p { print }
 	/^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / && p { exit }
 	' "$kernel_patch"
+
+	echo "========== stat.c lines 60-230 =========="
+	sed -n '60,230p' "$KERNEL_DIR/fs/stat.c"
+	
+	echo "========== stat.c functions =========="
+	grep -nE '^(int|static int|void|SYSCALL_DEFINE[0-9]+)\s+|^EXPORT_SYMBOL' \
+	    "$KERNEL_DIR/fs/stat.c"
+	
+	echo "========== cmdline.c full =========="
+	cat "$KERNEL_DIR/fs/proc/cmdline.c"
+	
 ####################################################################################################
 
 	# Keep the original apply logic and its safety checks.
