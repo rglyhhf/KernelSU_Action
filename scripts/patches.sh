@@ -89,6 +89,8 @@ susfs_apply() {
     # Print the exact reason the SUSFS patch does not apply.
 
 	# Adapt the upstream SUSFS 4.9 patch for crDroid 15.0.
+
+	python3 "${REPO_ROOT}/patches/adapt_crdroid_susfs.py" "$kernel_patch"
 	
 	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
 
