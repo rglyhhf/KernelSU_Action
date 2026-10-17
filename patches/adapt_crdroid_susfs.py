@@ -25,7 +25,7 @@ def make_hunk(old_start, new_start, heading, lines):
 
 # Adapt the final fdinfo.c hunk to crDroid's original fallback code.
 start = text.find(
-    "@@ -83,13 +101,44 @@ static void inotify_fdinfo"
+    "@@ -83,6 +107,66 @@ static void inotify_fdinfo(struct seq_file *m, struct fsnotify_mark *mark)"
 )
 end = text.find("diff --git a/fs/overlayfs/inode.c", start)
 
