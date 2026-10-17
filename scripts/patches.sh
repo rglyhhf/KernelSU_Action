@@ -120,15 +120,15 @@ susfs_apply() {
 	echo "========== SUSFS PATCH: fs/stat.c =========="
 	awk '
 	/^diff --git a\/fs\/stat.c / { p=1 }
+	p && /^diff --git / && !/^diff --git a\/fs\/stat.c / { exit }
 	p { print }
-	/^diff --git / && !/^diff --git a\/fs\/stat.c / && p { exit }
 	' "$kernel_patch"
 	
 	echo "========== SUSFS PATCH: fs/proc/cmdline.c =========="
 	awk '
 	/^diff --git a\/fs\/proc\/cmdline.c / { p=1 }
+	p && /^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / { exit }
 	p { print }
-	/^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / && p { exit }
 	' "$kernel_patch"
 
 	echo "========== stat.c lines 60-230 =========="
