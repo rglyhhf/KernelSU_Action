@@ -74,14 +74,8 @@ make_boot_image() {
 	cp "${BOOT_OUT}/${KERNEL_IMAGE_NAME}" "${WORKSPACE}/out/kernel" \
 		|| die "could not stage the new kernel into the unpacked ramdisk"
 
-	# Parse the shell-quoted arguments while preserving argument boundaries,
-	# especially the complete --cmdline value.
-	local -a fmt_args=()
-	mapfile -d '' -t fmt_args < <(
-		python3 -c 'import shlex, sys; sys.stdout.buffer.write(b"\\0".join(x.encode() for x in shlex.split(sys.stdin.read())))' <<< "$fmt"
-	)
-	[ "${#fmt_args[@]}" -gt 0 ] || die "failed to parse source boot image arguments"
-	python3 "${tools}/mkbootimg.py" "${fmt_args[@]}" -o boot.img || die "mkbootimg failed"
+	# Preserve argument boundaries, including the complete --cmdline.
+	python3 -c 'import shlex, subprocess, sys; subprocess.run([sys.executable, sys.argv[1], *shlex.split(sys.stdin.read()), "-o", "boot.img"], check=True)' "${tools}/mkbootimg.py" <<< "$fmt" || die "mkbootimg failed"
 	[ -s "${WORKSPACE}/boot.img" ] || die "boot.img was not produced"
 
 	ok "boot.img built ($(du -h "${WORKSPACE}/boot.img" | cut -f1))"
