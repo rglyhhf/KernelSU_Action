@@ -45,34 +45,59 @@ susfs_branch_for() {
 diag_cmdline() {
     local stage="$1" patch_file="${2:-}"
     local f="${KERNEL_DIR}/fs/proc/cmdline.c"
+    local report
 
-    echo
-    echo "========== DIAG_CMDLINE_STAGE: ${stage} =========="
-    echo "KERNEL_DIR=${KERNEL_DIR}"
-    if [ -f "$f" ]; then
-        sha256sum "$f" || true
-        echo "----- cmdline.c lines 1-140 -----"
-        nl -ba "$f" | sed -n '1,140p'
-        echo "----- suspicious lines -----"
-        grep -nE '^[[:space:]]*#{10,}|^#static|ACTUAL fs/proc/cmdline' "$f" || true
-    else
-        echo "ERROR: missing $f"
+    report=$(mktemp) || return 1
+
+    {
+        echo "========== DIAG_CMDLINE_STAGE: ${stage} =========="
+        echo "KERNEL_DIR=${KERNEL_DIR}"
+        echo "KERNEL_COMMIT:"
+        git -C "$KERNEL_DIR" rev-parse HEAD 2>/dev/null || true
+
+        if [ -f "$f" ]; then
+            echo "SOURCE_SHA256:"
+            sha256sum "$f"
+            echo "SUSPICIOUS_LINES:"
+            grep -nE '^[[:space:]]*#{10,}|^[[:space:]]*#static|ACTUAL fs/proc/cmdline' "$f" || true
+            echo "SOURCE_LINES_1_TO_110:"
+            nl -ba "$f" | sed -n '1,110p'
+        else
+            echo "ERROR: source file missing: $f"
+        fi
+
+        if [ -n "$patch_file" ] && [ -f "$patch_file" ]; then
+            echo "PATCH_PATH=${patch_file}"
+            echo "PATCH_SHA256:"
+            sha256sum "$patch_file"
+            echo "CMDLINE_PATCH_SECTION:"
+            awk '
+                /^diff --git a\/fs\/proc\/cmdline.c / { p=1 }
+                p && /^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / { exit }
+                p { print }
+            ' "$patch_file"
+        fi
+
+        echo "========== END DIAG_CMDLINE_STAGE: ${stage} =========="
+    } > "$report" 2>&1
+
+    # Keep the ordinary Actions log usable.
+    cat "$report"
+
+    # Also preserve the same evidence in the Actions run summary.
+    if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+        {
+            printf '\n## DIAG_CMDLINE_STAGE: %s\n\n' "$stage"
+            printf '<details><summary>展开完整诊断内容</summary>\n\n```text\n'
+            cat "$report"
+            printf '\n```\n\n</details>\n'
+        } >> "$GITHUB_STEP_SUMMARY" || {
+            echo "WARNING: could not append diagnostics to GITHUB_STEP_SUMMARY"
+        }
     fi
 
-    if [ -n "$patch_file" ] && [ -f "$patch_file" ]; then
-        echo "----- patch SHA256 -----"
-        sha256sum "$patch_file" || true
-        echo "----- cmdline patch section -----"
-        awk '
-            /^diff --git a\/fs\/proc\/cmdline.c / { p=1 }
-            p && /^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / { exit }
-            p { print }
-        ' "$patch_file"
-    fi
-    echo "========== END DIAG_CMDLINE_STAGE: ${stage} =========="
-    echo
+    rm -f "$report"
 }
-
 susfs_apply() {
 	local repo=${SUSFS_REPO:-https://gitlab.com/simonpunk/susfs4ksu.git}
 	local branch=${SUSFS_BRANCH:-auto}
@@ -162,109 +187,7 @@ susfs_apply() {
 		) || true
 	fi
 
-############################ 诊断代码 ################################################################
-
-	echo "========== ACTUAL fs/stat.c =========="
-	sed -n '1,300p' "$KERNEL_DIR/fs/stat.c"
-	
-	echo "========== ACTUAL fs/proc/cmdline.c =========="
-	sed -n '1,75p' "$KERNEL_DIR/fs/proc/cmdline.c"
-	
-	echo "========== SUSFS PATCH: fs/stat.c =========="
-	awk '
-	/^diff --git a\/fs\/stat.c / { p=1 }
-	p && /^diff --git / && !/^diff --git a\/fs\/stat.c / { exit }
-	p { print }
-	' "$kernel_patch"
-	
-	echo "========== SUSFS PATCH: fs/proc/cmdline.c =========="
-	awk '
-	/^diff --git a\/fs\/proc\/cmdline.c / { p=1 }
-	p && /^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / { exit }
-	p { print }
-	' "$kernel_patch"
-
-	echo "========== stat.c lines 60-230 =========="
-	sed -n '60,230p' "$KERNEL_DIR/fs/stat.c"
-	
-	echo "========== stat.c functions =========="
-	grep -nE '^(int|static int|void|SYSCALL_DEFINE[0-9]+)\s+|^EXPORT_SYMBOL' \
-	    "$KERNEL_DIR/fs/stat.c"
-	
-	echo "========== cmdline.c full =========="
-	cat "$KERNEL_DIR/fs/proc/cmdline.c"
-
-	echo "========== STAT FUNCTION DEFINITIONS =========="
-	grep -R -nE \
-	'^[[:space:]]*(int|long|static int)[[:space:]]+(vfs_fstat|vfs_fstatat|vfs_statx_fd|vfs_statx)[[:space:]]*\(' \
-	"$KERNEL_DIR/fs" "$KERNEL_DIR/include" 2>/dev/null || true
-
-	echo "========== SUSFS STAT HOOK SYMBOLS =========="
-	grep -R -nE \
-	'ksu_is_init_rc_hook_enabled|ksu_handle_vfs_fstat|ksu_su_compat_enabled|__ksu_is_allow_uid_for_current|ksu_handle_stat' \
-	"$KERNEL_DIR/KernelSU" "$KERNEL_DIR/drivers" "$KERNEL_DIR/include" 2>/dev/null \
-	| head -100 || true
-
-	echo "========== PATCH STAT RELATED HUNKS =========="
-	grep -nE \
-	'^diff --git a/fs/stat\.c|^@@|vfs_fstat|vfs_fstatat|vfs_statx|ksu_handle_stat|ksu_handle_vfs_fstat' \
-	"$kernel_patch" | head -160 || true
-
-	#KERNEL_DIR="$GITHUB_WORKSPACE/kernel_workspace/android-kernel"
-
-	echo "========== VFS INTERFACES =========="
-	grep -R -nE \
-	'vfs_(getattr_nosec|getattr|statx_fd|statx|fstat|fstatat)[[:space:]]*\(' \
-	"$KERNEL_DIR/fs" "$KERNEL_DIR/include/linux" 2>/dev/null || true
-	
-	echo "========== STATX AND KSTAT DEFINITIONS =========="
-	grep -R -nE \
-	'struct kstat|result_mask|KSTAT_QUERY_FLAGS|STATX_SUS_KSTAT' \
-	"$KERNEL_DIR/include/linux" "$KERNEL_DIR/fs" 2>/dev/null | head -100 || true
-	
-	echo "========== SUSFS CURRENT APP UID =========="
-	grep -R -nE \
-	'susfs_is_current_app_uid|susfs_is_inode_sus_kstat|susfs_sus_kstat_spoof_generic_fillattr' \
-	"$KERNEL_DIR" 2>/dev/null | head -100 || true
-	
-	echo "========== RE SUKISU HOOK DECLARATIONS =========="
-	grep -R -nE \
-	'ksu_handle_vfs_fstat|ksu_handle_stat|ksu_su_compat_enabled|ksu_is_init_rc_hook_enabled' \
-	"$KERNEL_DIR/KernelSU" "$KERNEL_DIR/drivers/kernelsu" 2>/dev/null | head -100 || true
-
-	echo "========== SUSFS PATCH DIAGNOSTIC =========="
-	echo "KERNEL_DIR=$KERNEL_DIR"
-	echo "PATCH=$kernel_patch"
-	
-	if [ ! -f "$kernel_patch" ]; then
-	    echo "[ERROR] Patch file does not exist: $kernel_patch"
-	else
-	    (
-	        cd "$KERNEL_DIR" || exit 1
-	        patch -l --dry-run -p1 --verbose < "$kernel_patch"
-	    ) > /tmp/susfs-patch-diagnostic.log 2>&1 || true
-	
-	    echo "========== FAILED HUNKS =========="
-	    awk '
-		/^(checking|patching) file / {
-		    file = $0
-		}
-		/^Hunk #[0-9]+ FAILED/ {
-		    print ""
-		    print "FAILED FILE: " file
-		    print "DETAIL: " $0
-		}
-		/^[0-9]+ out of [0-9]+ hunks FAILED/ {
-		    print "SUMMARY: " $0
-		}
-		' /tmp/susfs-patch-diagnostic.log
-	
-	    echo "========== END DIAGNOSTIC =========="
-	fi
-		
-####################################################################################################
-
-	# Keep the original apply logic and its safety checks.
+# Keep the original apply logic and its safety checks.
 	#( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
 	#	|| die "the SUSFS kernel patch did not apply cleanly.
 	#	 Detected kernel ${kver}, used branch '${branch}'."
