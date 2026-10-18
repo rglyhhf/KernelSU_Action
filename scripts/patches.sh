@@ -41,11 +41,44 @@ susfs_branch_for() {
 	esac
 }
 
+# DIAG_CMDLINE_STAGE: temporary build diagnostics
+diag_cmdline() {
+    local stage="$1" patch_file="${2:-}"
+    local f="${KERNEL_DIR}/fs/proc/cmdline.c"
+
+    echo
+    echo "========== DIAG_CMDLINE_STAGE: ${stage} =========="
+    echo "KERNEL_DIR=${KERNEL_DIR}"
+    if [ -f "$f" ]; then
+        sha256sum "$f" || true
+        echo "----- cmdline.c lines 1-140 -----"
+        nl -ba "$f" | sed -n '1,140p'
+        echo "----- suspicious lines -----"
+        grep -nE '^[[:space:]]*#{10,}|^#static|ACTUAL fs/proc/cmdline' "$f" || true
+    else
+        echo "ERROR: missing $f"
+    fi
+
+    if [ -n "$patch_file" ] && [ -f "$patch_file" ]; then
+        echo "----- patch SHA256 -----"
+        sha256sum "$patch_file" || true
+        echo "----- cmdline patch section -----"
+        awk '
+            /^diff --git a\/fs\/proc\/cmdline.c / { p=1 }
+            p && /^diff --git / && !/^diff --git a\/fs\/proc\/cmdline.c / { exit }
+            p { print }
+        ' "$patch_file"
+    fi
+    echo "========== END DIAG_CMDLINE_STAGE: ${stage} =========="
+    echo
+}
+
 susfs_apply() {
 	local repo=${SUSFS_REPO:-https://gitlab.com/simonpunk/susfs4ksu.git}
 	local branch=${SUSFS_BRANCH:-auto}
 	local kver
 	kver=$(kernel_version "$KERNEL_DIR") || die "cannot read kernel version from ${KERNEL_DIR}/Makefile"
+	diag_cmdline "01-before-SUSFS-copy"
 
 	group "Applying SUSFS"
 
@@ -72,6 +105,7 @@ susfs_apply() {
 	info "copying SUSFS sources into the kernel tree"
 	cp -v "${kp}/fs/"*.c              "${KERNEL_DIR}/fs/"            2>/dev/null || true
 	cp -v "${kp}/include/linux/"*.h   "${KERNEL_DIR}/include/linux/" 2>/dev/null || true
+	diag_cmdline "02-after-SUSFS-source-copy"
 
 	# 2. Patch the kernel itself.
 	local kernel_patch="${kp}/50_add_susfs_in_${branch}.patch"
@@ -111,6 +145,7 @@ susfs_apply() {
 	    info "adapting SUSFS patch for crDroid kernel ${kver}"
 	    python3 "$ADAPTER" "$kernel_patch" \
 	        || die "failed to adapt SUSFS patch"
+	        diag_cmdline "03-after-SUSFS-adapter" "$kernel_patch"
 	else
 	    info "Skipping crDroid SUSFS adapter for kernel ${kver}"
 	fi
@@ -241,9 +276,11 @@ susfs_apply() {
 		die "SUSFS patch is incompatible with this kernel; refusing to continue."
 	fi
 
+	diag_cmdline "04-before-SUSFS-patch-application" "$kernel_patch"
 	( cd "$KERNEL_DIR" && patch -l -p1 --force --no-backup-if-mismatch < "$kernel_patch" ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
 		 Detected kernel ${kver}, used branch '${branch}'."
+		 diag_cmdline "05-after-SUSFS-patch-application" "$kernel_patch"
 
 #########################################################################################
 	# 3. Patch the KernelSU side -- but only when the variant does not already

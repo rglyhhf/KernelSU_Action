@@ -134,11 +134,13 @@ build_kernel() {
 	cd "$KERNEL_DIR"
 	info "make ${args} ${KERNEL_CONFIG}"
 	# shellcheck disable=SC2086
+	diag_cmdline "06-before-defconfig"
 	make -j"$(nproc --all)" CC=clang $args "${KERNEL_CONFIG}" \
 		|| die "defconfig generation failed"
 
 	info "make ${args}"
 	# shellcheck disable=SC2086
+	diag_cmdline "07-before-kernel-make"
 	make -j"$(nproc --all)" CC="$cc" $args \
 		|| die "kernel build failed"
 
