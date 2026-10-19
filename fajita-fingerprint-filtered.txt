@@ -1,0 +1,1777 @@
+﻿
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13108:10-19 19:01:20.375  2937  2
+937 D UdfpsTouchOverlayBinder: [com.android.systemui.biometrics.ui.view.UdfpsTouchOv
+erlay{5d4d2e5 V.E...... ........ 0,0-1080,2340 #7f0a0908 app:id/udfps_touch_overlay}
+]: update shouldHandleTouches=true
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13109:10-19 19:01:20.375  1561  7
+403 E HidlToAidlSessionAdapter: setIgnoreDisplayTouches unsupported in HIDL
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13110:10-19 19:01:20.375  1561  7
+403 D FingerprintProvider/defaultHIDL: setIgnoreDisplayTouches set to false
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13111:10-19 19:01:20.420  1636  1
+636 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: vendor updateStat
+us 4
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13112:10-19 19:01:20.420  1636  1
+636 D [GF_HAL][FingerprintCore]: status 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13113:10-19 19:01:20.420  1636  1
+636 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: vendor updateStat
+us 8
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13114:10-19 19:01:20.420  1636  1
+636 D [GF_HAL][FingerprintCore]: status 8
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13115:10-19 19:01:20.420  1636  1
+636 D [GF_HAL][Fpsys]: fp_set_tpirq_enable 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13116:10-19 19:01:20.423  1636  1
+636 D [GF_HAL][FingerprintCore]: [enroll] spmt is pass
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13117:10-19 19:01:20.424  1636  1
+636 D [GF_HAL][Timer]: [createTimer] create timer success, timer_id=0x785502ea90
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13118:10-19 19:01:20.424  1636  1
+636 D [CaEntry]: [sendCommand] request token: 227, target: 1000, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13119:10-19 19:01:20.428  1636  1
+636 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13159:10-19 19:01:21.861  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13160:10-19 19:01:21.861  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13161:10-19 19:01:21.861  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13162:10-19 19:01:21.861  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13163:10-19 19:01:21.861  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13164:10-19 19:01:21.861  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502e910
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13165:10-19 19:01:21.861  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13166:10-19 19:01:21.862  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13167:10-19 19:01:21.862  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13168:10-19 19:01:21.862  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13169:10-19 19:01:21.862  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13170:10-19 19:01:21.862  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13171:10-19 19:01:21.862  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13172:10-19 19:01:21.863  1636  1
+910 D [CaEntry]: [sendCommand] request token: 229, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13183:10-19 19:01:22.113  1636  1
+910 D [CaEntry]: [sendCommand] request token: 230, target: 1001, cmd id: 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13184:10-19 19:01:22.276  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13185:10-19 19:01:22.276  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13186:10-19 19:01:22.276  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13187:10-19 19:01:22.276  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13188:10-19 19:01:22.276  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=19.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13189:10-19 19:01:22.276  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=19)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13190:10-19 19:01:22.276  1636  1
+910 D [CaEntry]: [sendCommand] request token: 231, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13191:10-19 19:01:22.279  2937 26
+133 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13230:10-19 19:01:22.591  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13231:10-19 19:01:22.591  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13232:10-19 19:01:22.628  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13233:10-19 19:01:22.628  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13234:10-19 19:01:22.629  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13235:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13236:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13237:10-19 19:01:22.629  1636  1
+716 D [GF_HAL][Fpsys]: clear finger ready flag
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13238:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13239:10-19 19:01:22.629  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<32>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13240:10-19 19:01:22.629  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13241:10-19 19:01:22.629  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13242:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13243:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13244:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13245:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13246:10-19 19:01:22.629  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13247:10-19 19:01:22.629  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13248:10-19 19:01:22.629  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13294:10-19 19:01:23.091  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13295:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13296:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13297:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13298:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13299:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13300:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13301:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13302:10-19 19:01:23.092  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13303:10-19 19:01:23.092  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13304:10-19 19:01:23.092  1636  1
+910 D [CaEntry]: [sendCommand] request token: 234, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13335:10-19 19:01:23.446  6596  6
+606 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13336:10-19 19:01:23.509  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13337:10-19 19:01:23.509  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13338:10-19 19:01:23.509  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13339:10-19 19:01:23.509  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13340:10-19 19:01:23.509  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=18.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13341:10-19 19:01:23.509  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=18)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13342:10-19 19:01:23.509  1636  1
+910 D [CaEntry]: [sendCommand] request token: 236, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13343:10-19 19:01:23.510  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13380:10-19 19:01:23.816  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13381:10-19 19:01:23.816  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13382:10-19 19:01:23.816  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13383:10-19 19:01:23.816  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13384:10-19 19:01:23.816  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13385:10-19 19:01:23.826  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13386:10-19 19:01:23.826  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13387:10-19 19:01:23.826  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13388:10-19 19:01:23.826  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13389:10-19 19:01:23.826  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13390:10-19 19:01:23.826  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13391:10-19 19:01:23.826  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13392:10-19 19:01:23.826  1115 22
+683 E sensors-hal: handle_sns_client_event:65, device_orient_event: ts=4465272884878
+, type=0,  hal scalar type =0.000000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13393:10-19 19:01:23.826  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13456:10-19 19:01:24.232  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13457:10-19 19:01:24.232  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13458:10-19 19:01:24.232  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13459:10-19 19:01:24.232  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13460:10-19 19:01:24.232  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13461:10-19 19:01:24.233  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13462:10-19 19:01:24.233  2937  3
+195 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13627:10-19 19:01:24.669  3228  3
+228 D SST     : [0] handlePollStateResultMessage: PS IWLAN. NetworkRegistrationInfo{
+ domain=PS transportType=WLAN registrationState=NOT_REG_OR_SEARCHING networkRegistra
+tionState=NOT_REG_OR_SEARCHING roamingType=NOT_ROAMING accessNetworkTechnology=IWLAN
+ rejectCause=0 emergencyEnabled=false availableServices=[] cellIdentity=null voiceSp
+ecificInfo=null dataSpecificInfo=null nrState=**** rRplmn= isUsingCarrierAggregation
+=false isNonTerrestrialNetwork=TERRESTRIAL}
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13628:10-19 19:01:24.678  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13629:10-19 19:01:24.678  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13630:10-19 19:01:24.678  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13631:10-19 19:01:24.678  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13632:10-19 19:01:24.678  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=17.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13633:10-19 19:01:24.678  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=17)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13634:10-19 19:01:24.678  1636  1
+910 D [CaEntry]: [sendCommand] request token: 241, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13635:10-19 19:01:24.679  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13676:10-19 19:01:24.708  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13677:10-19 19:01:24.708  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13678:10-19 19:01:24.708  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13679:10-19 19:01:24.708  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13680:10-19 19:01:24.708  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13681:10-19 19:01:24.708  3120  3
+511 W IWlanNetworkService: 87 > Response Processed
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13682:10-19 19:01:24.708  3228  3
+263 D NRM-I-0 : onRequestNetworkRegistrationInfoComplete result: 0, info: NetworkReg
+istrationInfo{ domain=PS transportType=WLAN registrationState=NOT_REG_OR_SEARCHING n
+etworkRegistrationState=NOT_REG_OR_SEARCHING roamingType=NOT_ROAMING accessNetworkTe
+chnology=IWLAN rejectCause=0 emergencyEnabled=false availableServices=[] cellIdentit
+y=null voiceSpecificInfo=null dataSpecificInfo=null nrState=**** rRplmn= isUsingCarr
+ierAggregation=false isNonTerrestrialNetwork=TERRESTRIAL}
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13867:10-19 19:01:24.969  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13868:10-19 19:01:24.970  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13869:10-19 19:01:24.970  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13870:10-19 19:01:24.970  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13871:10-19 19:01:24.970  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13872:10-19 19:01:24.972  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13873:10-19 19:01:24.972  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13874:10-19 19:01:24.972  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13875:10-19 19:01:24.972  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13876:10-19 19:01:24.972  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13877:10-19 19:01:24.972  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13878:10-19 19:01:24.972  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13879:10-19 19:01:24.972  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13880:10-19 19:01:24.973  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13927:10-19 19:01:25.415  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13928:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13929:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13930:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13931:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13932:10-19 19:01:25.415  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502e950
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13933:10-19 19:01:25.415  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13934:10-19 19:01:25.415  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13935:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13936:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13937:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13938:10-19 19:01:25.415  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13939:10-19 19:01:25.415  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13940:10-19 19:01:25.415  1636  1
+910 D [CaEntry]: [sendCommand] request token: 244, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13988:10-19 19:01:25.725  3879  5
+856 I HiAdKit.DC.BatteryStatusReceiver:  call doOnReceive
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13989:10-19 19:01:25.836  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13990:10-19 19:01:25.836  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13991:10-19 19:01:25.837  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13992:10-19 19:01:25.837  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13993:10-19 19:01:25.837  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=16.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13994:10-19 19:01:25.837  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=16)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13995:10-19 19:01:25.837  1636  1
+910 D [CaEntry]: [sendCommand] request token: 246, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:13996:10-19 19:01:25.838  2937 19
+858 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14030:10-19 19:01:26.082  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14031:10-19 19:01:26.082  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14032:10-19 19:01:26.119  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14033:10-19 19:01:26.119  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14034:10-19 19:01:26.119  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14035:10-19 19:01:26.119  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14036:10-19 19:01:26.119  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14037:10-19 19:01:26.119  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14038:10-19 19:01:26.119  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14039:10-19 19:01:26.119  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14040:10-19 19:01:26.120  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14048:10-19 19:01:26.123  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14049:10-19 19:01:26.123  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14050:10-19 19:01:26.123  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14051:10-19 19:01:26.123  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14052:10-19 19:01:26.123  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14053:10-19 19:01:26.245  1115 22
+683 E sensors-hal: handle_sns_client_event:65, device_orient_event: ts=4467691394148
+, type=4,  hal scalar type =4.000000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14054:10-19 19:01:26.283  1115 22
+683 E sensors-hal: handle_sns_client_event:65, device_orient_event: ts=4467729780659
+, type=0,  hal scalar type =0.000000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14084:10-19 19:01:26.457  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14085:10-19 19:01:26.457  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14086:10-19 19:01:26.457  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14087:10-19 19:01:26.457  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14088:10-19 19:01:26.457  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14089:10-19 19:01:26.457  1636  1
+716 D [GF_HAL][Fpsys]: read aod node sucessed 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14090:10-19 19:01:26.457  1636  1
+716 D [CaEntry]: [sendCommand] request token: 248, target: 1002, cmd id: 9
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14109:10-19 19:01:26.721  1636  1
+910 D [CaEntry]: [sendCommand] request token: 250, target: 1001, cmd id: 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14110:10-19 19:01:26.893  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14111:10-19 19:01:26.893  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14112:10-19 19:01:26.893  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14113:10-19 19:01:26.893  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14114:10-19 19:01:26.893  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=15.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14115:10-19 19:01:26.893  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=15)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14116:10-19 19:01:26.893  1636  1
+910 D [CaEntry]: [sendCommand] request token: 251, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14117:10-19 19:01:26.896  2937 19
+858 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14141:10-19 19:01:26.920  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14142:10-19 19:01:26.920  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14143:10-19 19:01:26.920  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14144:10-19 19:01:26.920  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14145:10-19 19:01:26.920  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14146:10-19 19:01:27.107  1112  1
+112 I android.hardware.power-service-qti: Power setBoost: 0, duration: 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14147:10-19 19:01:27.109  6596  6
+606 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14159:10-19 19:01:27.156  1570  2
+138 E QMI_FW  : qmi_cci_get_ref: ref count increased 2
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14160:10-19 19:01:27.166  1115 22
+683 E sensors-hal: handle_sns_client_event:65, device_orient_event: ts=4468612713471
+, type=0,  hal scalar type =0.000000
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14161:10-19 19:01:27.173  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14162:10-19 19:01:27.173  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14163:10-19 19:01:27.173  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14164:10-19 19:01:27.173  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14165:10-19 19:01:27.173  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14166:10-19 19:01:27.173  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14167:10-19 19:01:27.173  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14168:10-19 19:01:27.174  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14169:10-19 19:01:27.174  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14178:10-19 19:01:27.177  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14179:10-19 19:01:27.177  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14180:10-19 19:01:27.177  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14181:10-19 19:01:27.177  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14182:10-19 19:01:27.177  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14183:10-19 19:01:27.179   993  1
+794 E QMI_FW  : qmi_cci_get_ref: ref count increased 2
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14184:10-19 19:01:27.201   993  1
+794 E QMI_FW  : qmi_cci_get_ref: ref count increased 2
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14369:10-19 19:01:27.520  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14370:10-19 19:01:27.520  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14371:10-19 19:01:27.520  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14372:10-19 19:01:27.520  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14373:10-19 19:01:27.520  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14374:10-19 19:01:27.527  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502ea50
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14375:10-19 19:01:27.527  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14376:10-19 19:01:27.527  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14377:10-19 19:01:27.527  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14378:10-19 19:01:27.527  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14379:10-19 19:01:27.527  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14380:10-19 19:01:27.527  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14381:10-19 19:01:27.527  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14382:10-19 19:01:27.527  1636  1
+910 D [CaEntry]: [sendCommand] request token: 254, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14412:10-19 19:01:27.851  1112  1
+112 I android.hardware.power-service-qti: Power setBoost: 0, duration: 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14413:10-19 19:01:27.944  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14414:10-19 19:01:27.944  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14415:10-19 19:01:27.944  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14416:10-19 19:01:27.944  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14417:10-19 19:01:27.944  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=14.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14418:10-19 19:01:27.944  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=14)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14419:10-19 19:01:27.944  1636  1
+910 D [CaEntry]: [sendCommand] request token: 256, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14420:10-19 19:01:27.945  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14456:10-19 19:01:28.230  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14457:10-19 19:01:28.230  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14458:10-19 19:01:28.230  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14459:10-19 19:01:28.230  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14460:10-19 19:01:28.230  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14461:10-19 19:01:28.233  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14462:10-19 19:01:28.233  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14463:10-19 19:01:28.233  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14464:10-19 19:01:28.234  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14465:10-19 19:01:28.234  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14466:10-19 19:01:28.234  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14467:10-19 19:01:28.234  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14468:10-19 19:01:28.234  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14469:10-19 19:01:28.235  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14516:10-19 19:01:29.259  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14517:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14518:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14519:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14520:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14521:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14522:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14523:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14524:10-19 19:01:29.259  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14525:10-19 19:01:29.259  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14526:10-19 19:01:29.259  1636  1
+910 D [CaEntry]: [sendCommand] request token: 259, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14538:10-19 19:01:29.515  1561  2
+686 I commit_sys_config_file: [settings-1-0,78]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14539:10-19 19:01:29.680  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14540:10-19 19:01:29.680  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14541:10-19 19:01:29.680  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14542:10-19 19:01:29.680  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14543:10-19 19:01:29.680  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=13.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14544:10-19 19:01:29.680  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=13)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14545:10-19 19:01:29.680  1636  1
+910 D [CaEntry]: [sendCommand] request token: 261, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14546:10-19 19:01:29.682  2937  3
+548 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14587:10-19 19:01:30.002  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14588:10-19 19:01:30.003  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14589:10-19 19:01:30.003  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14590:10-19 19:01:30.003  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14591:10-19 19:01:30.003  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14592:10-19 19:01:30.012  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14593:10-19 19:01:30.012  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14594:10-19 19:01:30.012  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14595:10-19 19:01:30.012  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14596:10-19 19:01:30.012  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14597:10-19 19:01:30.012  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14598:10-19 19:01:30.012  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14599:10-19 19:01:30.012  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14600:10-19 19:01:30.013  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14652:10-19 19:01:30.397  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14653:10-19 19:01:30.397  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14654:10-19 19:01:30.397  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14655:10-19 19:01:30.397  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14656:10-19 19:01:30.397  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14657:10-19 19:01:30.401  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502e3d0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14658:10-19 19:01:30.401  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14659:10-19 19:01:30.401  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14660:10-19 19:01:30.401  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14661:10-19 19:01:30.401  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14662:10-19 19:01:30.401  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14663:10-19 19:01:30.401  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14664:10-19 19:01:30.401  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14665:10-19 19:01:30.401  1636  1
+910 D [CaEntry]: [sendCommand] request token: 264, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14677:10-19 19:01:30.746 23502 23
+502 W dumpsys : Thread Pool max thread count is 0. Cannot cache binder as linkToDeat
+h cannot be implemented. serviceName: battery
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14678:10-19 19:01:30.824  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14679:10-19 19:01:30.824  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14680:10-19 19:01:30.824  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14681:10-19 19:01:30.824  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14682:10-19 19:01:30.824  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=12.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14683:10-19 19:01:30.824  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=12)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14684:10-19 19:01:30.824  1636  1
+910 D [CaEntry]: [sendCommand] request token: 266, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14685:10-19 19:01:30.825  2937  3
+195 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14726:10-19 19:01:31.105  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14727:10-19 19:01:31.106  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14728:10-19 19:01:31.106  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14729:10-19 19:01:31.106  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14730:10-19 19:01:31.106  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14731:10-19 19:01:31.116  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14732:10-19 19:01:31.116  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14733:10-19 19:01:31.116  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14734:10-19 19:01:31.116  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14735:10-19 19:01:31.116  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14736:10-19 19:01:31.116  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14737:10-19 19:01:31.116  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14738:10-19 19:01:31.116  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14739:10-19 19:01:31.117  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14783:10-19 19:01:31.584  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14784:10-19 19:01:31.584  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14785:10-19 19:01:31.584  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14786:10-19 19:01:31.584  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14787:10-19 19:01:31.584  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14788:10-19 19:01:31.584  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14789:10-19 19:01:31.584  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14790:10-19 19:01:31.584  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14791:10-19 19:01:31.584  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14792:10-19 19:01:31.585  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14793:10-19 19:01:31.585  1636  1
+910 D [CaEntry]: [sendCommand] request token: 269, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14815:10-19 19:01:31.950  6596  6
+606 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14816:10-19 19:01:32.008  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14817:10-19 19:01:32.008  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14818:10-19 19:01:32.008  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14819:10-19 19:01:32.008  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14820:10-19 19:01:32.008  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=11.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14821:10-19 19:01:32.008  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=11)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14822:10-19 19:01:32.008  1636  1
+910 D [CaEntry]: [sendCommand] request token: 271, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14823:10-19 19:01:32.009  2937  3
+195 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14855:10-19 19:01:32.250  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14856:10-19 19:01:32.250  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14857:10-19 19:01:32.288  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14858:10-19 19:01:32.288  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14859:10-19 19:01:32.288  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14860:10-19 19:01:32.288  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14861:10-19 19:01:32.288  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14862:10-19 19:01:32.288  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14863:10-19 19:01:32.288  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14864:10-19 19:01:32.288  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14865:10-19 19:01:32.289  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14873:10-19 19:01:32.292  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14874:10-19 19:01:32.292  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14875:10-19 19:01:32.292  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14876:10-19 19:01:32.292  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14877:10-19 19:01:32.292  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14878:10-19 19:01:32.388  1561  1
+561 I LineageHealth: isSupported mode called, param: 2, supported: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14879:10-19 19:01:32.388  1561  1
+561 I LineageHealth: mIsPowerConnected: true, mBatteryPct: 97.0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14915:10-19 19:01:32.787  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14916:10-19 19:01:32.787  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14917:10-19 19:01:32.787  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14918:10-19 19:01:32.787  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14919:10-19 19:01:32.787  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14920:10-19 19:01:32.787  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502e350
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14921:10-19 19:01:32.788  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14922:10-19 19:01:32.788  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14923:10-19 19:01:32.788  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14924:10-19 19:01:32.788  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14925:10-19 19:01:32.788  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14926:10-19 19:01:32.788  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14927:10-19 19:01:32.788  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14928:10-19 19:01:32.788  1636  1
+910 D [CaEntry]: [sendCommand] request token: 274, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14941:10-19 19:01:33.038  1636  1
+910 D [CaEntry]: [sendCommand] request token: 275, target: 1001, cmd id: 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14942:10-19 19:01:33.221  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14943:10-19 19:01:33.221  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14944:10-19 19:01:33.221  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14945:10-19 19:01:33.221  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14946:10-19 19:01:33.221  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=10.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14947:10-19 19:01:33.221  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=10)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14948:10-19 19:01:33.221  1636  1
+910 D [CaEntry]: [sendCommand] request token: 276, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14949:10-19 19:01:33.224  2937  3
+548 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14993:10-19 19:01:33.664  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14994:10-19 19:01:33.664  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14995:10-19 19:01:33.664  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14996:10-19 19:01:33.664  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14997:10-19 19:01:33.664  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14998:10-19 19:01:33.664  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:14999:10-19 19:01:33.664  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15000:10-19 19:01:33.664  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15001:10-19 19:01:33.664  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15002:10-19 19:01:33.664  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15003:10-19 19:01:33.664  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15004:10-19 19:01:33.665  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15005:10-19 19:01:33.665  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15006:10-19 19:01:33.666  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15052:10-19 19:01:34.878  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15053:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15054:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15055:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15056:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15057:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15058:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15059:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15060:10-19 19:01:34.878  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15061:10-19 19:01:34.878  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15062:10-19 19:01:34.879  1636  1
+910 D [CaEntry]: [sendCommand] request token: 279, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15081:10-19 19:01:35.131  1636  1
+910 D [CaEntry]: [sendCommand] request token: 280, target: 1001, cmd id: 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15082:10-19 19:01:35.302  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15083:10-19 19:01:35.302  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15084:10-19 19:01:35.302  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15085:10-19 19:01:35.302  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15086:10-19 19:01:35.302  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=9.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15087:10-19 19:01:35.302  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=9)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15088:10-19 19:01:35.302  1636  1
+910 D [CaEntry]: [sendCommand] request token: 281, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15089:10-19 19:01:35.304  2937  3
+195 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15123:10-19 19:01:35.579  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15124:10-19 19:01:35.579  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15125:10-19 19:01:35.618  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15126:10-19 19:01:35.618  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15127:10-19 19:01:35.618  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15128:10-19 19:01:35.618  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15129:10-19 19:01:35.618  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15130:10-19 19:01:35.618  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15131:10-19 19:01:35.618  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15132:10-19 19:01:35.618  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15133:10-19 19:01:35.619  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15139:10-19 19:01:35.620  1561  2
+797 V Biometrics/AcquisitionClient: Acquired: 6 1, shouldSend: true
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15140:10-19 19:01:35.620  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15141:10-19 19:01:35.620  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15142:10-19 19:01:35.620  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15143:10-19 19:01:35.620  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15144:10-19 19:01:35.620  7783  7
+783 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15145:10-19 19:01:35.620  2937  3
+548 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15180:10-19 19:01:36.516  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15181:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15182:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15183:10-19 19:01:36.516  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502eb90
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15184:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15185:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15186:10-19 19:01:36.516  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15187:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15188:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15189:10-19 19:01:36.516  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15190:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15191:10-19 19:01:36.516  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15192:10-19 19:01:36.516  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15193:10-19 19:01:36.516  1636  1
+910 D [CaEntry]: [sendCommand] request token: 284, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15208:10-19 19:01:36.833 23578 23
+578 W dumpsys : Thread Pool max thread count is 0. Cannot cache binder as linkToDeat
+h cannot be implemented. serviceName: battery
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15209:10-19 19:01:36.941  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15210:10-19 19:01:36.941  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15211:10-19 19:01:36.941  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15212:10-19 19:01:36.941  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15213:10-19 19:01:36.941  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=8.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15214:10-19 19:01:36.941  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=8)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15215:10-19 19:01:36.941  1636  1
+910 D [CaEntry]: [sendCommand] request token: 286, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15216:10-19 19:01:36.943  2937  3
+697 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15254:10-19 19:01:37.204  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15255:10-19 19:01:37.205  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15256:10-19 19:01:37.240  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15257:10-19 19:01:37.240  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15258:10-19 19:01:37.241  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15259:10-19 19:01:37.241  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15260:10-19 19:01:37.241  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15261:10-19 19:01:37.241  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15262:10-19 19:01:37.241  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15263:10-19 19:01:37.241  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15264:10-19 19:01:37.241  1636  1
+716 D [GF_HAL][Fpsys]: clear finger ready flag
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15269:10-19 19:01:37.242  2937  3
+548 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15270:10-19 19:01:37.242  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15271:10-19 19:01:37.242  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15272:10-19 19:01:37.242  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15273:10-19 19:01:37.242  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15274:10-19 19:01:37.242  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15275:10-19 19:01:37.242  1561  2
+797 V Biometrics/AcquisitionClient: Acquired: 6 1, shouldSend: true
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15310:10-19 19:01:37.487  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15311:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15312:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15313:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15314:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15315:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15316:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15317:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15318:10-19 19:01:37.488  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15319:10-19 19:01:37.488  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15320:10-19 19:01:37.488  1636  1
+910 D [CaEntry]: [sendCommand] request token: 289, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15348:10-19 19:01:37.871  1112  1
+112 I android.hardware.power-service-qti: Power setBoost: 0, duration: 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15349:10-19 19:01:37.910  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15350:10-19 19:01:37.910  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15351:10-19 19:01:37.911  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15352:10-19 19:01:37.911  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15353:10-19 19:01:37.911  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=7.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15354:10-19 19:01:37.911  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=7)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15355:10-19 19:01:37.911  1636  1
+910 D [CaEntry]: [sendCommand] request token: 291, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15356:10-19 19:01:37.911  2937  3
+195 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15391:10-19 19:01:38.161  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15392:10-19 19:01:38.161  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15393:10-19 19:01:38.161  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15394:10-19 19:01:38.161  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15395:10-19 19:01:38.161  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15396:10-19 19:01:38.168  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15397:10-19 19:01:38.169  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15398:10-19 19:01:38.169  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15399:10-19 19:01:38.169  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15400:10-19 19:01:38.169  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15401:10-19 19:01:38.169  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15402:10-19 19:01:38.169  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15403:10-19 19:01:38.169  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15404:10-19 19:01:38.169  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15440:10-19 19:01:38.355  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15441:10-19 19:01:38.355  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15442:10-19 19:01:38.355  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15443:10-19 19:01:38.355  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15444:10-19 19:01:38.355  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15445:10-19 19:01:38.364  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502f7d0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15446:10-19 19:01:38.364  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15447:10-19 19:01:38.364  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15448:10-19 19:01:38.364  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15449:10-19 19:01:38.364  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15450:10-19 19:01:38.364  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15451:10-19 19:01:38.364  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15452:10-19 19:01:38.364  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15453:10-19 19:01:38.364  1636  1
+910 D [CaEntry]: [sendCommand] request token: 294, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15466:10-19 19:01:38.782  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15467:10-19 19:01:38.779  6596  6
+596 I auditd  : type=1400 audit(0.0:3434): avc:  denied  { dac_override } for  comm=
+"perf@2.2-servic" capability=1  scontext=u:r:hal_perf_default:s0 tcontext=u:r:hal_pe
+rf_default:s0 tclass=capability permissive=0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15468:10-19 19:01:38.782  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15469:10-19 19:01:38.782  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15470:10-19 19:01:38.782  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15471:10-19 19:01:38.782  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=6.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15472:10-19 19:01:38.782  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15473:10-19 19:01:38.782  1636  1
+910 D [CaEntry]: [sendCommand] request token: 296, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15474:10-19 19:01:38.784  3228  3
+228 D DN-102-C: ConnectedState: onDataStateChanged: DataCallResponse: { cause=NONE(0
+x0) retry=-1 cid=0 linkStatus=2 protocolType=1 ifname=rmnet_data3 addresses=[2409:81
+5a:c8d8:c7be:5862:dbb5:bd64:2fa7/64] dnses=[] gateways=[/fe80::b80f:8152:19cf:6970] 
+pcscf=[/2409:805b:5002:52c8::107:7301, /2409:805a:5002:5278::107:7201, /2409:805b:50
+02:5219::107:7901, /2409:805a:5002:5278::107:7401] mtu=1432 mtuV4=0 mtuV6=1432 hando
+verFailureMode=legacy pduSessionId=0 defaultQos=null qosBearerSessions=[] sliceInfo=
+null trafficDescriptors=[] networkValidationStatus=unsupported}
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15519:10-19 19:01:39.063  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15520:10-19 19:01:39.063  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15521:10-19 19:01:39.096  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15522:10-19 19:01:39.096  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15523:10-19 19:01:39.096  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15524:10-19 19:01:39.096  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15525:10-19 19:01:39.096  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15526:10-19 19:01:39.096  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15527:10-19 19:01:39.096  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15528:10-19 19:01:39.097  1636  1
+716 D [GF_HAL][Fpsys]: clear finger ready flag
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15529:10-19 19:01:39.097  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<32>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15536:10-19 19:01:39.098  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15537:10-19 19:01:39.098  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15538:10-19 19:01:39.098  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15539:10-19 19:01:39.098  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15540:10-19 19:01:39.098  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15541:10-19 19:01:39.099  7783  7
+783 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15542:10-19 19:01:39.253  1561  2
+719 I input_interaction: Interaction with: fc72438 com.android.settings/com.android.
+settings.biometrics.fingerprint.FingerprintEnrollEnrolling, [Gesture Monitor] swipe-
+up, [Gesture Monitor] edge-swipe, 5772899 UdfpsControllerOverlay, PointerEventDispat
+cher0, 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15574:10-19 19:01:39.308  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15575:10-19 19:01:39.308  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15576:10-19 19:01:39.308  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15577:10-19 19:01:39.308  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15578:10-19 19:01:39.308  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15579:10-19 19:01:39.309  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502f7d0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15580:10-19 19:01:39.309  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15581:10-19 19:01:39.309  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15582:10-19 19:01:39.309  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15583:10-19 19:01:39.309  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15584:10-19 19:01:39.309  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15585:10-19 19:01:39.309  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15586:10-19 19:01:39.309  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15587:10-19 19:01:39.309  1636  1
+910 D [CaEntry]: [sendCommand] request token: 299, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15617:10-19 19:01:39.634  3860  5
+786 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: CELLULAR C
+apabilities: SUPL&FOTA&XCAP&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&VALIDATED&NOT_RO
+AMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAIN
+ED LinkUpBandwidth>=7868Kbps LinkDnBandwidth>=7868Kbps Specifier: <TelephonyNetworkS
+pecifier [mSubId = 1]> SubscriptionIds: {1} UnderlyingNetworks: Null]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15618:10-19 19:01:39.740  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15619:10-19 19:01:39.740  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15620:10-19 19:01:39.740  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15621:10-19 19:01:39.740  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15622:10-19 19:01:39.740  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=5.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15623:10-19 19:01:39.740  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=5)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15624:10-19 19:01:39.740  1636  1
+910 D [CaEntry]: [sendCommand] request token: 301, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15625:10-19 19:01:39.741  2937  3
+195 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15667:10-19 19:01:40.017  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15668:10-19 19:01:40.017  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15669:10-19 19:01:40.017  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15670:10-19 19:01:40.017  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15671:10-19 19:01:40.017  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15672:10-19 19:01:40.024  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15673:10-19 19:01:40.024  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15674:10-19 19:01:40.024  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15675:10-19 19:01:40.024  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15676:10-19 19:01:40.024  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15677:10-19 19:01:40.024  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15678:10-19 19:01:40.024  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15679:10-19 19:01:40.024  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15680:10-19 19:01:40.025  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15722:10-19 19:01:41.014  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15723:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15724:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15725:10-19 19:01:41.014  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502ef10
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15726:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15727:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15728:10-19 19:01:41.014  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15729:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15730:10-19 19:01:41.014  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15731:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15732:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15733:10-19 19:01:41.014  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15734:10-19 19:01:41.014  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15735:10-19 19:01:41.014  1636  1
+910 D [CaEntry]: [sendCommand] request token: 304, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15747:10-19 19:01:41.403  1570  2
+138 E QMI_FW  : qmi_cci_get_ref: ref count increased 2
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15748:10-19 19:01:41.438  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15749:10-19 19:01:41.438  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15750:10-19 19:01:41.438  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15751:10-19 19:01:41.438  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15752:10-19 19:01:41.438  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=4.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15753:10-19 19:01:41.438  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=4)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15754:10-19 19:01:41.438  1636  1
+910 D [CaEntry]: [sendCommand] request token: 306, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15755:10-19 19:01:41.442  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15911:10-19 19:01:41.654  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15912:10-19 19:01:41.654  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15913:10-19 19:01:41.684  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15914:10-19 19:01:41.684  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15915:10-19 19:01:41.685  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15916:10-19 19:01:41.685  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15917:10-19 19:01:41.685  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15918:10-19 19:01:41.685  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15919:10-19 19:01:41.685  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15920:10-19 19:01:41.685  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15921:10-19 19:01:41.685  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15929:10-19 19:01:41.688  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15930:10-19 19:01:41.688  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15931:10-19 19:01:41.688  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15932:10-19 19:01:41.688  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15933:10-19 19:01:41.688  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15934:10-19 19:01:41.702  3228  3
+248 I m.android.phone: Background concurrent copying GC freed 19MB AllocSpace bytes,
+ 0(0B) LOS objects, 75% free, 5679KB/22MB, paused 84us,92us total 139.096ms
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15935:10-19 19:01:41.804  1561  7
+403 D FileUtils: Rounded bytes from 8010174464 to 8000000000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15968:10-19 19:01:41.915  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15969:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15970:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15971:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15972:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15973:10-19 19:01:41.915  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502ef10
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15974:10-19 19:01:41.915  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15975:10-19 19:01:41.915  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15976:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15977:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15978:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15979:10-19 19:01:41.915  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15980:10-19 19:01:41.915  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15981:10-19 19:01:41.916  1636  1
+910 D [CaEntry]: [sendCommand] request token: 309, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15993:10-19 19:01:42.167  1636  1
+910 D [CaEntry]: [sendCommand] request token: 310, target: 1001, cmd id: 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15994:10-19 19:01:42.340  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15995:10-19 19:01:42.340  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15996:10-19 19:01:42.341  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15997:10-19 19:01:42.341  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15998:10-19 19:01:42.341  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=3.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:15999:10-19 19:01:42.341  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=3)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16000:10-19 19:01:42.341  1636  1
+910 D [CaEntry]: [sendCommand] request token: 311, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16001:10-19 19:01:42.343  2937  3
+697 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16041:10-19 19:01:42.692  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16042:10-19 19:01:42.692  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16043:10-19 19:01:42.692  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16044:10-19 19:01:42.692  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16045:10-19 19:01:42.692  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16046:10-19 19:01:42.697  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16047:10-19 19:01:42.697  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16048:10-19 19:01:42.698  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16049:10-19 19:01:42.698  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16050:10-19 19:01:42.698  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16051:10-19 19:01:42.698  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16052:10-19 19:01:42.698  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16053:10-19 19:01:42.698  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16054:10-19 19:01:42.698  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16094:10-19 19:01:43.137  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16095:10-19 19:01:43.137  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16096:10-19 19:01:43.137  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16097:10-19 19:01:43.137  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16098:10-19 19:01:43.137  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16099:10-19 19:01:43.137  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502f250
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16100:10-19 19:01:43.138  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16101:10-19 19:01:43.138  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16102:10-19 19:01:43.138  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16103:10-19 19:01:43.138  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16104:10-19 19:01:43.138  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16105:10-19 19:01:43.138  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16106:10-19 19:01:43.138  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16107:10-19 19:01:43.138  1636  1
+910 D [CaEntry]: [sendCommand] request token: 314, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16123:10-19 19:01:43.391  1636  1
+910 D [CaEntry]: [sendCommand] request token: 315, target: 1001, cmd id: 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16124:10-19 19:01:43.572  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16125:10-19 19:01:43.572  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16126:10-19 19:01:43.573  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16127:10-19 19:01:43.573  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16128:10-19 19:01:43.573  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=2.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16129:10-19 19:01:43.573  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=2)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16130:10-19 19:01:43.573  1636  1
+910 D [CaEntry]: [sendCommand] request token: 316, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16131:10-19 19:01:43.574  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16176:10-19 19:01:43.790  1231  1
+231 I RefreshRateSelector: 0 mode changes were performed under the previous policy
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16177:10-19 19:01:43.790  1231  1
+231 D DisplayModeController: setDesiredMode 4630946253560767361 {mode={fps=60.00 Hz,
+ modePtr={id=0, vsyncRate=60.00 Hz, peakRefreshRate=60.00 Hz}}, emitEvent=true, forc
+e=false}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16178:10-19 19:01:43.827  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16179:10-19 19:01:43.827  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16180:10-19 19:01:43.827  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16181:10-19 19:01:43.827  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16182:10-19 19:01:43.827  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16183:10-19 19:01:43.828  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16184:10-19 19:01:43.828  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16185:10-19 19:01:43.828  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16186:10-19 19:01:43.828  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16191:10-19 19:01:43.829  2937 19
+858 D BiometricStatusRepositoryImpl: authenticationState updated: Acquired(biometric
+SourceType=FINGERPRINT, requestReason=SettingsAuthentication(settingsOperation=ENROL
+L_ENROLLING), acquiredInfo=6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16192:10-19 19:01:43.829  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16193:10-19 19:01:43.829  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16194:10-19 19:01:43.829  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16195:10-19 19:01:43.829  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16196:10-19 19:01:43.829  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16197:10-19 19:01:43.829  1561  2
+797 V Biometrics/AcquisitionClient: Acquired: 6 1, shouldSend: true
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16233:10-19 19:01:44.056  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:16, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16234:10-19 19:01:44.056  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16235:10-19 19:01:44.056  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16236:10-19 19:01:44.056  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16237:10-19 19:01:44.056  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16238:10-19 19:01:44.057  1636  1
+716 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502f250
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16239:10-19 19:01:44.057  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<2>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16240:10-19 19:01:44.057  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16241:10-19 19:01:44.057  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16242:10-19 19:01:44.057  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16243:10-19 19:01:44.057  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16244:10-19 19:01:44.057  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16245:10-19 19:01:44.057  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16246:10-19 19:01:44.058  1636  1
+910 D [CaEntry]: [sendCommand] request token: 319, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16279:10-19 19:01:44.464  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<32>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16280:10-19 19:01:44.464  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:32, return:0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16281:10-19 19:01:44.473  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16282:10-19 19:01:44.474  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16283:10-19 19:01:44.474  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16284:10-19 19:01:44.482  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16285:10-19 19:01:44.483  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16286:10-19 19:01:44.483  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16287:10-19 19:01:44.483  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16288:10-19 19:01:44.483  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=1.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16289:10-19 19:01:44.483  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=1)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16290:10-19 19:01:44.483  1636  1
+910 D [CaEntry]: [sendCommand] request token: 321, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16291:10-19 19:01:44.483  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16309:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16310:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 32 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16311:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 32 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16312:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 32 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16313:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16314:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 4 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16315:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 4 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16316:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1001
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16317:10-19 19:01:44.508  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16318:10-19 19:01:44.508  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16319:10-19 19:01:44.509  1561  2
+797 W FingerprintManager: Invalid acquired message: 6, 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16362:10-19 19:01:44.858  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:2, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16363:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 16 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16364:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 16 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16365:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEnrollReceivedEvt] event 16 is not handled.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16366:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16367:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Get event 2 end
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16368:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][FingerprintCore]: [onEvent] event = 2 workstate = 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16369:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=1000
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16370:10-19 19:01:44.858  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(6)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16371:10-19 19:01:44.858  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [wakeupSensor] sensor has alreadly been waked up 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16372:10-19 19:01:44.859  1636  1
+910 D [CaEntry]: [sendCommand] request token: 324, target: 1002, cmd id: 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16395:10-19 19:01:45.206  6596  6
+606 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16396:10-19 19:01:45.280  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16397:10-19 19:01:45.280  1636  1
+910 D [GF_HAL][FingerprintCore]: release_cpubw E
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16398:10-19 19:01:45.280  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyAcquiredInfo] acquired_info=0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16399:10-19 19:01:45.280  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onAcquired(0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16400:10-19 19:01:45.280  1636  1
+910 D [CaEntry]: [sendCommand] request token: 326, target: 1000, cmd id: 9
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16401:10-19 19:01:45.281  1561  2
+797 W BiometricLogger: Unknown field detected: CLIENT_UNKNOWN
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16409:10-19 19:01:45.299  1209  1
+209 D vendor.qti.vibrator: QTI Vibrator off
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16410:10-19 19:01:45.350  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16411:10-19 19:01:45.351  1636  1
+910 D [GF_HAL][FingerprintCore]: [notifyEnrollProgress] gid=0, fid=-1868639772, rema
+ining=0.
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16412:10-19 19:01:45.351  1636  1
+910 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: onEnrollResult(fi
+d=-1868639772, gid=0, rem=0)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16413:10-19 19:01:45.351  1636  1
+910 D [GF_HAL][Timer]: [destroy] destroy timer_id=0x785502ea90
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16414:10-19 19:01:45.351  1636  1
+910 D [CaEntry]: [sendCommand] request token: 327, target: 1003, cmd id: 4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16457:10-19 19:01:45.377  2937  2
+937 D UdfpsTouchOverlayBinder: [com.android.systemui.biometrics.ui.view.UdfpsTouchOv
+erlay{5d4d2e5 V.E...... ......I. 0,0-1080,2340 #7f0a0908 app:id/udfps_touch_overlay}
+-detached]: update shouldHandleTouches=false
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16458:10-19 19:01:45.377  1561  2
+560 E HidlToAidlSessionAdapter: setIgnoreDisplayTouches unsupported in HIDL
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16459:10-19 19:01:45.377  1561  2
+560 D FingerprintProvider/defaultHIDL: setIgnoreDisplayTouches set to true
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16460:10-19 19:01:45.379  1636  1
+910 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16461:10-19 19:01:45.379  1636  1
+910 D [GF_HAL][ShenzhenSensor]: [sleepSensor] ## sleep ## 
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16462:10-19 19:01:45.379  1636  1
+910 D [GF_HAL][EventCenter]: [threadLoop] Wait get event
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16463:10-19 19:01:45.379  1636  1
+636 E [GF_HAL][FingerprintCore]: [setActiveGroup] /data/vendor_de/0/fpdata 24
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16464:10-19 19:01:45.379  1636  1
+636 D [CaEntry]: [sendCommand] request token: 329, target: 1000, cmd id: 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16465:10-19 19:01:45.390  1561  7
+403 I InputDispatcher: Touched window was removed: 5772899 UdfpsControllerOverlay in
+ display %0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16466:10-19 19:01:45.400  1561  2
+719 I input_cancel: [PointerEventDispatcher0,reason=input event injection failed]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16476:10-19 19:01:45.467  1561  2
+797 D BiometricSchedulerOperation: [Finished / destroy]: {[161] com.android.server.b
+iometrics.sensors.fingerprint.hidl.FingerprintUpdateActiveUserClient, proto=1, owner
+=android, cookie=0, requestId=-1, userId=0}
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16477:10-19 19:01:45.467  1561  2
+797 V BiometricSchedulerOperation: started: {[161] com.android.server.biometrics.sen
+sors.fingerprint.hidl.FingerprintUpdateActiveUserClient, proto=1, owner=android, coo
+kie=0, requestId=-1, userId=0}, State: 5
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16478:10-19 19:01:45.467  1561  2
+797 E FingerprintProvider/defaultHIDL: onPointerUp received during client: {[161] co
+m.android.server.biometrics.sensors.fingerprint.hidl.FingerprintUpdateActiveUserClie
+nt, proto=1, owner=android, cookie=0, requestId=-1, userId=0}
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16479:10-19 19:01:45.467  1561  2
+797 D BiometricScheduler: [Finishing] {[161] com.android.server.biometrics.sensors.f
+ingerprint.hidl.FingerprintUpdateActiveUserClient, proto=1, owner=android, cookie=0,
+ requestId=-1, userId=0}, success: true
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16480:10-19 19:01:45.467  1561  2
+797 D BiometricScheduler: No operations, returning to idle
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16481:10-19 19:01:45.470  1112  1
+112 I android.hardware.power-service-qti: Power setBoost: 0, duration: 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16482:10-19 19:01:45.471  6596  6
+606 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16483:10-19 19:01:45.471  6596  6
+606 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16484:10-19 19:01:45.552  1636  1
+716 D [GF_HAL][FingerprintCore]: notifyAuthUpEvt
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16485:10-19 19:01:45.553  1636  1
+716 D [GF_HAL][Fpsys]: fp_set_tpirq_enable 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16486:10-19 19:01:45.555  1636  1
+716 D [GF_HAL][EventCenter]: [postEvent] enqueue event<4>
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:16487:10-19 19:01:45.555  1636  1
+716 D [GF_HAL][Device]: [handleNetlinkMessage] post event:4, return:0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18017:10-19 19:01:50.357  2937  2
+937 I KeyguardTransitionRepository: STARTED transition: TransitionStep(from=GONE, to
+=DOZING, value=0.0, transitionState=STARTED, ownerName=FromGoneTransitionInteractor(
+Sleep transition triggered))
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18018:10-19 19:01:50.360  1225  3
+424 D AudioFlinger: AUDIO_OUTPUT_FLAG_FAST denied: sharedBuffer=0x772789e1f0 frameCo
+unt=0 mFrameCount=192 format=0x1 mFormat=0x5 isLinear=1 channelMask=0x3 sampleRate=4
+4100 mSampleRate=48000 hasFastMixer=1 tid=23862 fastTrackAvailMask=0xf0
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18019:10-19 19:01:50.365  1561  2
+797 D BiometricScheduler: [Added] {[162] com.android.server.biometrics.sensors.finge
+rprint.aidl.FingerprintAuthenticationClient, proto=3, owner=com.android.systemui, co
+okie=0, requestId=90, userId=0}, new queue size: 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18020:10-19 19:01:50.366  1561  2
+797 D BiometricScheduler: [Polled] {[162] com.android.server.biometrics.sensors.fing
+erprint.aidl.FingerprintAuthenticationClient, proto=3, owner=com.android.systemui, c
+ookie=0, requestId=90, userId=0}, State: 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18021:10-19 19:01:50.366  1561  2
+797 D GestureAvailabilityTracker: Notifying gesture availability, active=false
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18022:10-19 19:01:50.366  1225  3
+424 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18023:10-19 19:01:50.367  1561  7
+426 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 41
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18039:10-19 19:01:50.374  1115 23
+864 I sensors-hal: ssc_conn_resp_cb:660, resp_value = 0
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18040:10-19 19:01:50.379  1561  2
+603 I sysui_multi_action: [757,1696,758,6,759,0]
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18041:10-19 19:01:50.389  1561  2
+797 D BiometricScheduler: [Started] {[162] com.android.server.biometrics.sensors.fin
+gerprint.aidl.FingerprintAuthenticationClient, proto=3, owner=com.android.systemui, 
+cookie=0, requestId=90, userId=0}
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18042:10-19 19:01:50.390  1561  2
+797 D BiometricStateCallback: State updated from 0 to 2, client {[162] com.android.s
+erver.biometrics.sensors.fingerprint.aidl.FingerprintAuthenticationClient, proto=3, 
+owner=com.android.systemui, cookie=0, requestId=90, userId=0}
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18043:10-19 19:01:50.393  1561  2
+797 D Biometrics/AuthenticationClient: Requesting auth for com.android.systemui
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18044:10-19 19:01:50.394  2937  3
+697 D BiometricStatusRepositoryImpl: authenticationState updated: Started(biometricS
+ourceType=FINGERPRINT, requestReason=DeviceEntryAuthentication)
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18045:10-19 19:01:50.405  2937  2
+937 D UdfpsController: showUdfpsOverlay | adding window reason=4
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18049:10-19 19:01:50.412  1115 23
+864 E sensors-hal: handle_sns_client_event:67, pocket_sample: ts = 4491864629750 ns;
+ value = [0.000000, 15.000000, 0.000000]
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18050:10-19 19:01:50.424  1636  1
+636 D android.hardware.biometrics.fingerprint@2.3-service.oneplus: vendor updateStat
+us 3
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18051:10-19 19:01:50.424  1636  1
+636 D [GF_HAL][FingerprintCore]: status 3
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18052:10-19 19:01:50.424  1636  1
+636 D [GF_HAL][FingerprintCore]: [authenticate] spmt is pass
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18053:10-19 19:01:50.424  1636  1
+636 D [CaEntry]: [sendCommand] request token: 331, target: 1000, cmd id: 1
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18054:10-19 19:01:50.425  1636  1
+636 D [GF_HAL][HalBase]: [invokeCommand] err = 0, errno = GF_SUCCESS
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18055:10-19 19:01:50.425  1636  1
+636 D [GF_HAL][Fpsys]: fp_set_tpirq_enable 3
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18056:10-19 19:01:50.425  1636  1
+636 D [GF_HAL][Fpsys]: fp_set_tpirq_enable 1
+> C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18057:10-19 19:01:50.427  1561  2
+797 V BiometricSchedulerOperation: started: {[162] com.android.server.biometrics.sen
+sors.fingerprint.aidl.FingerprintAuthenticationClient, proto=3, owner=com.android.sy
+stemui, cookie=0, requestId=90, userId=0}, State: 2
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18058:10-19 19:01:50.469  1561  2
+569 E AccessPersistence: Failed to verity-protect runtime-permissions
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18059:10-19 19:01:50.469  1561  2
+569 E AccessPersistence: java.io.IOException: Failed to enable fs-verity on FD(773):
+ Inappropriate ioctl for device
+  C:\Users\Lin\Desktop\fajita-fingerprint-test.txt:18060:10-19 19:01:50.469  1561  2
+569 E AccessPersistence: 	at com.android.internal.security.VerityUtils.setUpFsverity
+(VerityUtils.java:94)
+
+
