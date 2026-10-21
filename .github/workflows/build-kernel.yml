@@ -188,6 +188,48 @@ jobs:
       - name: Build kernel
         run: bash scripts/build.sh all
 
+      - name: Inspect external module build prerequisites
+        shell: bash
+        run: |
+          set -u
+          KERNEL_DIR="${GITHUB_WORKSPACE}/kernel_workspace/android-kernel"
+          OUT="${KERNEL_DIR}/out"
+
+          echo "=== Output directory ==="
+          echo "KERNEL_DIR=${KERNEL_DIR}"
+          echo "OUT=${OUT}"
+
+          echo "=== Required files ==="
+          for f in \
+            "${OUT}/.config" \
+            "${OUT}/Module.symvers" \
+            "${OUT}/include/generated/utsrelease.h" \
+            "${OUT}/include/config/auto.conf"; do
+            if [ -f "${f}" ]; then
+              ls -lh "${f}"
+            else
+              echo "MISSING: ${f}"
+            fi
+          done
+
+          echo "=== Relevant kernel config ==="
+          if [ -f "${OUT}/.config" ]; then
+            grep -E '^(CONFIG_MODULES|CONFIG_MODULE_UNLOAD|CONFIG_MODVERSIONS|CONFIG_KALLSYMS|CONFIG_KALLSYMS_ALL)=' \
+              "${OUT}/.config" || true
+          fi
+
+          echo "=== Kernel release ==="
+          if [ -f "${OUT}/include/generated/utsrelease.h" ]; then
+            cat "${OUT}/include/generated/utsrelease.h"
+          fi
+
+          echo "=== Module.symvers ==="
+          if [ -f "${OUT}/Module.symvers" ]; then
+            echo "lines: $(wc -l < "${OUT}/Module.symvers")"
+            echo "first 10 entries:"
+            head -10 "${OUT}/Module.symvers"
+          fi
+
       - name: Package artifacts
         run: bash scripts/package.sh all
 
