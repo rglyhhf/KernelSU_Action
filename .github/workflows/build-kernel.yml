@@ -230,6 +230,97 @@ jobs:
             head -10 "${OUT}/Module.symvers"
           fi
 
+      - name: Build external module smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          KERNEL_DIR="${GITHUB_WORKSPACE}/kernel_workspace/android-kernel"
+          OUT="${KERNEL_DIR}/out"
+          TEST_DIR="${RUNNER_TEMP}/external-module-smoke-test"
+
+          export PATH="${CLANG_PATH:-}:${PATH}"
+
+          echo "=== Validate kernel build outputs ==="
+          test -f "${OUT}/.config"
+          test -f "${OUT}/Module.symvers"
+          test -f "${OUT}/include/generated/utsrelease.h"
+          test -f "${OUT}/include/config/auto.conf"
+
+          echo "=== Compiler ==="
+          command -v clang
+          clang --version | head -1
+
+          mkdir -p "${TEST_DIR}"
+          trap 'rm -rf "${TEST_DIR}"' EXIT
+
+          cat > "${TEST_DIR}/module_test.c" <<'EOF'
+          #include <linux/init.h>
+          #include <linux/module.h>
+
+          static int __init module_test_init(void)
+          {
+              pr_info("module_test: loaded\n");
+              return 0;
+          }
+
+          static void __exit module_test_exit(void)
+          {
+              pr_info("module_test: unloaded\n");
+          }
+
+          module_init(module_test_init);
+          module_exit(module_test_exit);
+
+          MODULE_LICENSE("GPL");
+          MODULE_DESCRIPTION("External kernel module build smoke test");
+          EOF
+
+          cat > "${TEST_DIR}/Makefile" <<'EOF'
+          obj-m += module_test.o
+          EOF
+
+          MAKE_ARGS=("O=out" "ARCH=${ARCH:-arm64}")
+
+          if [ -n "${CUSTOM_CMDS:-}" ]; then
+            read -r -a EXTRA_ARGS <<< "${CUSTOM_CMDS}"
+            MAKE_ARGS+=("${EXTRA_ARGS[@]}")
+          fi
+
+          if [ -n "${EXTRA_CMDS:-}" ]; then
+            read -r -a EXTRA_ARGS <<< "${EXTRA_CMDS}"
+            MAKE_ARGS+=("${EXTRA_ARGS[@]}")
+          fi
+
+          if [ -n "${GCC_64:-}" ]; then
+            read -r -a EXTRA_ARGS <<< "${GCC_64}"
+            MAKE_ARGS+=("${EXTRA_ARGS[@]}")
+          fi
+
+          if [ -n "${GCC_32:-}" ]; then
+            read -r -a EXTRA_ARGS <<< "${GCC_32}"
+            MAKE_ARGS+=("${EXTRA_ARGS[@]}")
+          fi
+
+          echo "=== Build external module ==="
+          printf 'make arguments:'
+          printf ' %q' "${MAKE_ARGS[@]}"
+          printf '\n'
+
+          make -C "${KERNEL_DIR}" \
+            -j"$(nproc --all)" \
+            CC=clang \
+            "${MAKE_ARGS[@]}" \
+            M="${TEST_DIR}" \
+            modules
+
+          echo "=== Verify module artifact ==="
+          test -s "${TEST_DIR}/module_test.ko"
+          ls -lh "${TEST_DIR}/module_test.ko"
+          file "${TEST_DIR}/module_test.ko"
+
+          echo "External module build: PASS"
+
       - name: Package artifacts
         run: bash scripts/package.sh all
 
