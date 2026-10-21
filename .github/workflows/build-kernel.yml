@@ -190,7 +190,7 @@ jobs:
         run: bash scripts/build.sh all
 
 ###################################################################
-          
+
       - name: Package artifacts
         run: bash scripts/package.sh all
 
