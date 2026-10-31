@@ -206,18 +206,17 @@ ksu_install() {
 # points were never actually patched -- which builds fine and then does
 # nothing at runtime.
 ksu_resolve_hook_mode() {
-	local mode=${1:-auto} kver=$2
 	if [ "$mode" = "auto" ]; then
-		if ver_ge "$kver" "5.10"; then
+		if [ "${KSU_VARIANT:-none}" = "resukisu" ] &&
+		   is_true "${ENABLE_SUSFS:-false}"; then
+			mode="susfs"
+		elif ver_ge "$kver" "5.10"; then
 			mode="kprobes"
 		else
-			# kprobes on pre-GKI kernels is the classic source of "KernelSU
-			# installed but su does nothing" reports; manual hooks are patched
-			# straight into the syscall entry points instead.
 			mode="manual"
 		fi
 		info "hook mode 'auto' resolved to '${mode}' for kernel ${kver}"
-	fi
+fi
 	export_env KSU_HOOK_MODE_RESOLVED "$mode"
 }
 
