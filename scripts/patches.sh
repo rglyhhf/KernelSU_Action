@@ -89,6 +89,19 @@ susfs_apply() {
 	#    ship SUSFS support. SukiSU-Ultra's 'builtin' branch, for instance,
 	#    declares CONFIG_KSU_SUSFS itself; applying the patch on top conflicts.
 	local ksu_dir="${KERNEL_DIR}/${KSU_DIR:-KernelSU}"
+
+	# BakaSU SUSFS API header fix
+	if [ "${KSU_VARIANT:-none}" = "resukisu" ]; then
+		local dispatch="${ksu_dir}/kernel/supercall/dispatch.c"
+
+		if [ -f "$dispatch" ] &&
+		   grep -q '#include <linux/susfs_def.h>' "$dispatch" &&
+		   ! grep -q '#include <linux/susfs.h>' "$dispatch"; then
+			sed -i 's@#include <linux/susfs_def.h>@#include <linux/susfs.h>@' "$dispatch"
+			info "BakaSU SUSFS API declarations enabled in dispatch.c"
+		fi
+	fi
+
 	local ksu_patch="${kp}/KernelSU/10_enable_susfs_for_ksu.patch"
 
 	if susfs_is_bundled; then
