@@ -253,6 +253,21 @@ ksu_hook_configs() {
 			*) : ;;  # tiann/KernelSU 0.9.x infers manual hooks from the source patch
 		esac
 		;;
+	susfs)
+		[ "$variant" = "resukisu" ] ||
+			die "SUSFS hook mode requires BakaSU (resukisu)"
+
+		is_true "${ENABLE_SUSFS:-false}" ||
+			die "SUSFS hook mode requires ENABLE_SUSFS=true"
+
+		kconf_set_many "$defconfig" \
+			CONFIG_KSU_SUSFS=y \
+			CONFIG_KSU_MANUAL_HOOK=n \
+			CONFIG_KSU_TRACEPOINT_HOOK=n \
+			CONFIG_DEBUG_KERNEL=y \
+			 CONFIG_KALLSYMS=y \
+			CONFIG_KALLSYMS_ALL=y
+		;;
 	tracepoint)
 		[ "$variant" = "resukisu" ] || [ "$variant" = "sukisu-ultra" ] \
 			|| warn "hook mode 'tracepoint' is only declared by ReSukiSU/SukiSU-Ultra; ignoring for ${variant}"
