@@ -199,9 +199,24 @@ validate() {
 	esac
 
 	case "${CFG[KSU_HOOK_MODE]}" in
-		auto | kprobes | manual | tracepoint | syscall | none) ;;
+		auto | kprobes | manual | tracepoint | syscall | susfs | none) ;;
 		*) _err "unknown KSU_HOOK_MODE '${CFG[KSU_HOOK_MODE]}'" ;;
 	esac
+
+	if [ "${CFG[KSU_HOOK_MODE]}" = "susfs" ]; then
+		[ "${CFG[KSU_VARIANT]}" = "resukisu" ] ||
+			_err "KSU_HOOK_MODE=susfs requires KSU_VARIANT=resukisu"
+
+		is_true "${CFG[ENABLE_SUSFS]}" ||
+			_err "KSU_HOOK_MODE=susfs requires ENABLE_SUSFS=true"
+	fi
+
+	if [ "${CFG[KSU_VARIANT]}" = "resukisu" ] &&
+        is_true "${CFG[ENABLE_SUSFS]}" &&
+        [ "${CFG[KSU_HOOK_MODE]}" != "auto" ] &&
+        [ "${CFG[KSU_HOOK_MODE]}" != "susfs" ]; then
+		_err "BakaSU with ENABLE_SUSFS=true requires KSU_HOOK_MODE=susfs or auto"
+	fi
 
 	if [ "${CFG[KSU_VARIANT]}" = "none" ]; then
 		is_true "${CFG[ENABLE_SUSFS]}" &&
