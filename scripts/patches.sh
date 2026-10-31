@@ -149,6 +149,14 @@ susfs_defconfig() {
 	local defconfig=$1
 	local ksu_dir="${KERNEL_DIR}/${KSU_DIR:-KernelSU}"
 
+	# BakaSU: SUSFS is a hooking method, mutually exclusive
+	# with manual and tracepoint hooking.
+	if [ "${KSU_VARIANT:-none}" = "resukisu" ]; then
+		kconf_enable "$defconfig" CONFIG_KSU_SUSFS
+		kconf_disable "$defconfig" CONFIG_KSU_MANUAL_HOOK
+		kconf_disable "$defconfig" CONFIG_KSU_TRACEPOINT_HOOK
+	fi
+
 	# The SUSFS option set is NOT stable across branches, so it is discovered
 	# from the Kconfig that was actually patched in rather than hardcoded.
 	#
