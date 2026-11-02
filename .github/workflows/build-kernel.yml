@@ -315,14 +315,19 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: "[130] Before artifact download"
+        run: echo "[130-workflow-release-download-start]"
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           path: artifacts
           merge-multiple: false
+      - name: "[131] Artifact download complete"
+        run: echo "[131-workflow-release-download-complete]"
 
       - name: Package AnyKernel3 as a flashable zip
         run: |
+          echo "[132-workflow-release-package-start]"
           mkdir -p release
           shopt -s nullglob
           for dir in artifacts/AnyKernel3*/; do
@@ -334,6 +339,10 @@ jobs:
             [ -f "$f" ] && cp "$f" release/
           done
           ls -la release/
+          echo "[133-workflow-release-package-complete]"
+
+      - name: "[134] Before release creation"
+        run: echo "[134-workflow-release-create-start]"
 
       - name: Create release
         uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 # v2.3.2
