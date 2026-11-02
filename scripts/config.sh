@@ -105,6 +105,7 @@ cfg_read() {
 }
 
 resolve() {
+	stage "01-config-resolve-start" "reading defaults, config file, and workflow overrides"
 	local key val
 	for key in "${!DEFAULTS[@]}"; do
 		val=${DEFAULTS[$key]}
@@ -236,14 +237,18 @@ validate() {
 # ------------------------------------------------------------------- main ---
 
 declare -A CFG
+stage "00-config-start" "configuration file: ${CONFIG_FILE}"
 resolve
+stage "02-config-legacy-bridge" "applying legacy compatibility mappings"
 apply_legacy_bridge
+stage "03-config-validation" "validating resolved configuration"
 validate
 
 # Derive the device label from the defconfig name, as before.
 DEVICE=$(printf '%s' "${CFG[KERNEL_CONFIG]}" | sed 's!.*/!!; s/_defconfig$//; s/_user$//; s/-perf$//')
 [ -n "${CFG[KERNEL_NAME]}" ] && DEVICE=${CFG[KERNEL_NAME]}
 CFG[DEVICE]=$DEVICE
+stage "04-config-resolved" "device=${DEVICE}; arch=${CFG[ARCH]}; kernel_config=${CFG[KERNEL_CONFIG]}; KSU=${CFG[KSU_VARIANT]}"
 
 summary "### Build configuration"
 summary ""
@@ -259,4 +264,5 @@ endgroup
 
 export_env BUILD_TIME "$(TZ=${BUILD_TZ:-Asia/Shanghai} date '+%Y%m%d%H%M')"
 
+stage "05-config-export-complete" "configuration exported to subsequent workflow steps"
 ok "configuration resolved (device: ${DEVICE})"
