@@ -49,10 +49,12 @@ clang_known_good() {
 }
 
 setup_clang() {
+	stage "10-toolchain-clang-start" "custom=${USE_CUSTOM_CLANG:-false}; branch=${CLANG_BRANCH:-}; version=${CLANG_VERSION:-}"
 	rm -rf "$CLANG_DIR"; mkdir -p "$CLANG_DIR"
 
 	if is_true "${USE_CUSTOM_CLANG:-false}"; then
 		group "Downloading custom Clang"
+		stage "11-toolchain-clang-custom" "source=${CUSTOM_CLANG_SOURCE}"
 		local src=${CUSTOM_CLANG_SOURCE:?CUSTOM_CLANG_SOURCE required}
 		case "$src" in
 			*.tar.gz | *.tgz | *.tar.xz | *.tar.zst | *.tar.bz2)
@@ -73,6 +75,7 @@ setup_clang() {
 		esac
 	else
 		group "Downloading AOSP Clang"
+		stage "11-toolchain-clang-aosp" "branch=${CLANG_BRANCH:-main-kernel-2025}; version=${CLANG_VERSION:-r547379}"
 		local branch=${CLANG_BRANCH:-main-kernel-2025}
 		local version=${CLANG_VERSION:-r547379}
 
@@ -99,6 +102,7 @@ setup_clang() {
 
 	local ver
 	ver=$("${CLANG_DIR}/bin/clang" --version | head -n1)
+	stage "12-toolchain-clang-ready" "${ver}"
 	ok "clang ready: ${ver}"
 	export_env CLANG_PATH "${CLANG_DIR}/bin"
 	summary "| Compiler | \`${ver}\` |"
@@ -108,6 +112,7 @@ setup_clang() {
 # AOSP's GCC 4.9 prebuilts are still the binutils of choice for pre-5.x trees
 # that cannot yet use LLVM's integrated assembler.
 setup_gcc() {
+	stage "13-toolchain-gcc-start" "arm64=${ENABLE_GCC_ARM64:-false}; arm32=${ENABLE_GCC_ARM32:-false}; custom64=${USE_CUSTOM_GCC_64:-false}; custom32=${USE_CUSTOM_GCC_32:-false}"
 	local gcc_tag=${AOSP_GCC_TAG:-android-12.1.0_r27}
 
 	if is_true "${USE_CUSTOM_GCC_64:-false}"; then
@@ -163,6 +168,7 @@ fetch_toolchain_generic() {
 
 # mkbootimg is only needed when repacking a boot image.
 setup_mkbootimg() {
+	stage "14-toolchain-mkbootimg-check" "boot-image build=${BUILD_BOOT_IMG:-false}"
 	is_true "${BUILD_BOOT_IMG:-false}" || return 0
 	group "Downloading mkbootimg tools"
 	local dir="${WORKSPACE}/tools"
@@ -175,7 +181,9 @@ setup_mkbootimg() {
 }
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+	stage "09-toolchain-start" "starting compiler and auxiliary toolchain setup"
 	setup_clang
 	setup_gcc
 	setup_mkbootimg
+	stage "15-toolchain-complete" "all requested toolchains are ready"
 fi
