@@ -52,19 +52,21 @@ susfs_apply() {
 		branch=$(susfs_branch_for "$kver")
 		[ -n "$branch" ] || die "no susfs4ksu branch is known for kernel ${kver}; set SUSFS_BRANCH explicitly.
        Available: $(git ls-remote --heads "$repo" | awk '{print $2}' | sed 's@refs/heads/@@' | tr '\n' ' ')"
-		stage "41-susfs-branch-resolved" "kernel=${kver}; branch=${branch}; repository=${repo}"
 		info "kernel ${kver} -> susfs branch '${branch}'"
 	fi
 
+	stage "41-susfs-branch-resolved" "kernel=${kver}; branch=${branch}; repository=${repo}"
 	ref_exists "$repo" "$branch" \
 		|| die "susfs4ksu has no branch '${branch}'.
        Available: $(git ls-remote --heads "$repo" | awk '{print $2}' | sed 's@refs/heads/@@' | tr '\n' ' ')"
 
 	local susfs_dir="${WORKSPACE}/susfs4ksu"
+	stage "42-susfs-clone-start" "cloning ${repo} @ ${branch}"
 	rm -rf "$susfs_dir"
 	retry 3 git clone -q --depth=1 -b "$branch" "$repo" "$susfs_dir" \
 		|| die "failed to clone ${repo} @ ${branch}"
 
+	stage "43-susfs-clone-complete" "repository checkout=${susfs_dir}"
 	local kp="${susfs_dir}/kernel_patches"
 	[ -d "$kp" ] || die "unexpected susfs4ksu layout: ${kp} missing"
 
@@ -73,7 +75,7 @@ susfs_apply() {
 	info "copying SUSFS sources into the kernel tree"
 	cp -v "${kp}/fs/"*.c              "${KERNEL_DIR}/fs/"            2>/dev/null || true
 	cp -v "${kp}/include/linux/"*.h   "${KERNEL_DIR}/include/linux/" 2>/dev/null || true
-	stage "02-after-SUSFS-source-copy" "SUSFS C and header sources copied"
+	stage "02-after-SUSFS-source-copy" "SUSFS C files=$(find "${KERNEL_DIR}/fs" -maxdepth 1 -type f -name "susfs*.c" | wc -l); SUSFS headers=$(find "${KERNEL_DIR}/include/linux" -maxdepth 1 -type f -name "susfs*.h" | wc -l)"
 
 	# 2. Patch the kernel itself.
 	local kernel_patch
@@ -106,7 +108,7 @@ susfs_apply() {
 		info "Skipping crDroid-15.0 SUSFS adapter for kernel ${kver}"
 	fi
 
-	stage "44-susfs-adapter-complete" "adapter completed; validating adapted patch"
+	stage "44-susfs-adapter-step-complete" "adapter step finished (executed or skipped); validating selected patch"
 	# 4. Verify patch compatibility before modifying the kernel tree.
 	#
 	# A failed dry-run is a hard error. Do not continue with a partially
@@ -458,6 +460,8 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
 			if [ "${KSU_VARIANT:-none}" != "none" ] &&
 			   [ "${KSU_HOOK_MODE_RESOLVED:-}" = "manual" ]; then
 				hooks_patch_apply
+			else
+				stage "70-manual-hooks-skip" "variant=${KSU_VARIANT:-none}; resolved mode=${KSU_HOOK_MODE_RESOLVED:-unset}"
 			fi
 
 			if is_true "${ENABLE_SUSFS:-false}"; then susfs_apply; else stage "40-susfs-skip" "disabled by configuration"; fi
