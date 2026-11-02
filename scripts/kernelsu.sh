@@ -75,6 +75,7 @@ ksu_default_is_branch() { [ "$1" = "resukisu" ]; }
 # ---------------------------------------------------------------- install ---
 
 ksu_install() {
+	stage "30-kernelsu-install-start" "variant=$1; requested_ref=${2:-auto}"
 	local variant=$1 requested_ref=${2-}
 
 	[ "$variant" = "none" ] && { info "KernelSU integration disabled"; return 0; }
@@ -82,6 +83,7 @@ ksu_install() {
 	local repo setup_ref dir modern_ref legacy_ref susfs_refs name
 	IFS='|' read -r repo setup_ref dir modern_ref legacy_ref susfs_refs name <<<"$(ksu_registry "$variant")"
 
+	stage "31-kernelsu-registry-resolved" "name=${name}; repository=${repo}; setup_ref=${setup_ref}; kernel=${kver}"
 	group "Installing ${name}"
 	info "repository: ${repo}"
 
@@ -99,6 +101,7 @@ ksu_install() {
 
 	# Validate before handing the ref to setup.sh, which would swallow a typo.
 	if [ -n "$ref" ]; then
+		stage "32-kernelsu-ref-validation" "checking requested ref in ${repo}"
 		info "validating ref '${ref}' exists in ${repo}"
 		ref_exists "$repo" "$ref" \
 			|| die "ref '${ref}' does not exist in ${repo}.
@@ -117,6 +120,7 @@ ksu_install() {
 
 	# Run the variant's own installer.
 	local setup_url="https://raw.githubusercontent.com/${repo#https://github.com/}/${setup_ref}/kernel/setup.sh"
+	stage "33-kernelsu-setup-script" "executing installer ${setup_url}"
 	info "running ${setup_url}"
 	(
 		cd "$KERNEL_DIR"
@@ -127,6 +131,7 @@ ksu_install() {
 		fi
 	) || die "${name} setup.sh failed"
 
+	stage "34-kernelsu-install-verification" "checking cloned directory, driver symlink, and Kconfig wiring"
 	# --- verify the installer actually did what it claims ------------------
 	local ksu_dir="${KERNEL_DIR}/${dir}"
 	[ -d "$ksu_dir" ] || die "${name} setup.sh finished but ${dir}/ is missing"
@@ -166,6 +171,7 @@ ksu_install() {
 			die "${name} is checked out at ${head_desc}, not the requested ref '${ref}'"
 		fi
 	fi
+	stage "35-kernelsu-installed" "name=${name}; ref=${ref:-latest-tag}; commit=${head_sha}; describe=${head_desc}"
 	ok "${name} installed at ${head_desc} (${head_sha})"
 
 	# --- publish facts the later steps need --------------------------------
@@ -206,6 +212,7 @@ ksu_install() {
 # points were never actually patched -- which builds fine and then does
 # nothing at runtime.
 ksu_resolve_hook_mode() {
+	stage "36-kernelsu-hook-mode" "requested=${1:-auto}; kernel=$2"
 	local mode=${1:-auto} kver=$2
 	if [ "$mode" = "auto" ]; then
 		if ver_ge "$kver" "5.10"; then
@@ -222,6 +229,7 @@ ksu_resolve_hook_mode() {
 }
 
 ksu_hook_configs() {
+	stage "37-kernelsu-defconfig-hooks" "variant=$1; mode=$2; kernel=$4; defconfig=$3"
 	local variant=$1 mode=$2 defconfig=$3 kver=$4
 
 	if [ "$mode" = "auto" ]; then
