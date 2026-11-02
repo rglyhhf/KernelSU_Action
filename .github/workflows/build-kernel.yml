@@ -125,10 +125,19 @@ jobs:
       IN_EXTRA_DEFCONFIG: ${{ inputs.extra_defconfig }}
 
     steps:
+      - name: [00] Checkout source
+        run: echo "[00-workflow-checkout] checking out test-branch sources"
       - uses: actions/checkout@v4
 
       - name: Resolve configuration
-        run: bash scripts/config.sh
+        run: |
+          echo "[01-workflow-config] resolving config and workflow overrides"
+          bash scripts/config.sh
+          echo "[02-workflow-config-complete] configuration step completed"
+
+      - name: [03] Before disk cleanup
+        if: env.REMOVE_UNUSED_PACKAGES == 'true'
+        run: echo "[03-workflow-disk-cleanup-start] removing unused runner packages"
 
       - name: Free up disk space
         if: env.REMOVE_UNUSED_PACKAGES == 'true'
@@ -144,6 +153,7 @@ jobs:
 
       - name: Add swap space
         run: |
+          echo "[04-workflow-swap-start] creating and enabling swap"
           # LTO links are memory-hungry and the runner has 16GB; a swap file is
           # cheaper and more predictable than an unpinned third-party action.
           sudo fallocate -l 8G /mnt/swapfile
@@ -151,9 +161,11 @@ jobs:
           sudo mkswap /mnt/swapfile
           sudo swapon /mnt/swapfile
           free -h
+          echo "[05-workflow-swap-complete] swap is active"
 
       - name: Install build dependencies
         run: |
+          echo "[06-workflow-dependencies-start] installing build packages"
           sudo apt-get update -qq
           # Kept deliberately lean. The historical list here was copied from the
           # full AOSP platform build docs and pulled in ~40 packages a kernel
@@ -164,19 +176,36 @@ jobs:
             git libelf-dev libssl-dev lz4 make python3 rsync unzip zip zstd \
             libncurses-dev
           mkdir -p "$WORKSPACE"
+          echo "[07-workflow-dependencies-complete] dependencies installed"
 
       - name: Set up toolchain
-        run: bash scripts/toolchain.sh
+        run: |
+          echo "[08-workflow-toolchain-start]"
+          bash scripts/toolchain.sh
+          echo "[16-workflow-toolchain-complete]"
 
       - name: Fetch kernel source
-        run: bash scripts/source.sh
+        run: |
+          echo "[17-workflow-source-start]"
+          bash scripts/source.sh
+          echo "[25-workflow-source-complete]"
 
       - name: Install KernelSU
         if: env.KSU_VARIANT != 'none'
-        run: bash scripts/kernelsu.sh
+        run: |
+          echo "[29-workflow-kernelsu-start]"
+          bash scripts/kernelsu.sh
+          echo "[38-workflow-kernelsu-complete]"
 
       - name: Apply kernel patches
-        run: bash scripts/patches.sh all
+        run: |
+          echo "[39-workflow-patches-start]"
+          bash scripts/patches.sh all
+          echo "[89-workflow-patches-complete]"
+
+      - name: [100] Before ccache setup
+        if: env.ENABLE_CCACHE == 'true'
+        run: echo "[100-workflow-ccache-start] configuring compiler cache"
 
       - name: Set up ccache
         if: env.ENABLE_CCACHE == 'true'
@@ -186,14 +215,21 @@ jobs:
           max-size: 2G
 
       - name: Build kernel
-        run: bash scripts/build.sh all
+        run: |
+          echo "[101-workflow-build-start]"
+          bash scripts/build.sh all
+          echo "[102-workflow-build-complete]"
 
       - name: Package artifacts
-        run: bash scripts/package.sh all
+        run: |
+          echo "[103-workflow-package-start]"
+          bash scripts/package.sh all
+          echo "[115-workflow-package-complete]"
 
       - name: Export build metadata
         id: meta
         run: |
+          echo "[116-workflow-metadata-start] exporting build outputs"
           {
             echo "device=${DEVICE}"
             echo "build_time=${BUILD_TIME}"
@@ -202,7 +238,10 @@ jobs:
             echo "kernel_release=${KERNEL_RELEASE:-}"
             echo "susfs_version=${SUSFS_VERSION:-}"
           } >> "$GITHUB_OUTPUT"
+          echo "[117-workflow-metadata-complete] metadata exported"
 
+      - name: [118] Before kernel image upload
+        run: echo "[118-workflow-kernel-upload-start]"
       - name: Upload kernel image
         uses: actions/upload-artifact@v4
         with:
@@ -210,6 +249,8 @@ jobs:
           path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }}
           if-no-files-found: error
 
+      - name: [119] Before AnyKernel3 upload
+        run: echo "[119-workflow-anykernel-upload-start]"
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v4
         with:
@@ -217,6 +258,9 @@ jobs:
           path: kernel_workspace/AnyKernel3/*
           if-no-files-found: error
 
+      - name: [120] Before DTBO upload
+        if: env.CHECK_DTBO_IS_OK == 'true'
+        run: echo "[120-workflow-dtbo-upload-start]"
       - name: Upload DTBO image
         if: env.CHECK_DTBO_IS_OK == 'true'
         uses: actions/upload-artifact@v4
@@ -224,6 +268,9 @@ jobs:
           name: dtbo-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
           path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}/boot/dtbo.img
 
+      - name: [121] Before boot image upload
+        if: env.MAKE_BOOT_IMAGE_IS_OK == 'true'
+        run: echo "[121-workflow-boot-upload-start]"
       - name: Upload boot image
         if: env.MAKE_BOOT_IMAGE_IS_OK == 'true'
         uses: actions/upload-artifact@v4
