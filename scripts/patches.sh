@@ -260,12 +260,14 @@ path_umount_apply() {
 
 	if ver_ge "$kver" "5.9"; then
 		info "kernel ${kver} already provides path_umount() upstream; nothing to do"
+		stage "51-path-umount-skip" "kernel ${kver} already has path_umount()"
 		endgroup; return 0
 	fi
 	[ -f "$ns" ] || die "fs/namespace.c not found"
 
 	if grep -q '^int path_umount\|^static int path_umount' "$ns"; then
 		info "path_umount() is already present in fs/namespace.c; nothing to do"
+		stage "51-path-umount-skip" "path_umount() already exists in source tree"
 		endgroup; return 0
 	fi
 
@@ -387,7 +389,10 @@ hooks_patch_apply() {
 			https://github.com/ReSukiSU/ReSukiSU_Patches.git "$dir" || true
 		local p="${dir}/scope-minimized/kernel-${kver}.patch"
 		if [ -f "$p" ]; then
-			( cd "$KERNEL_DIR" && apply_patch "$p" 1 ) && { endgroup; return 0; }
+			( cd "$KERNEL_DIR" && apply_patch "$p" 1 ) && {
+				stage "72-manual-hooks-complete" "ReSukiSU scope-minimized hooks applied: $p"
+				endgroup; return 0;
+			}
 		else
 			info "ReSukiSU ships no scope-minimized patch for kernel ${kver}"
 		fi
@@ -399,7 +404,10 @@ hooks_patch_apply() {
 		dir=$(sukisu_patch_dir)
 		for p in "${dir}/${kver}/"*hook*.patch "${dir}/hooks/syscall_hooks.patch"; do
 			[ -f "$p" ] || continue
-			if ( cd "$KERNEL_DIR" && apply_patch "$p" 1 ); then endgroup; return 0; fi
+			if ( cd "$KERNEL_DIR" && apply_patch "$p" 1 ); then
+				stage "72-manual-hooks-complete" "SukiSU hook patch applied: $p"
+				endgroup; return 0
+			fi
 		done
 	fi
 
