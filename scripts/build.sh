@@ -19,6 +19,7 @@ DEFCONFIG_PATH="${KERNEL_DIR}/arch/${ARCH}/configs/${KERNEL_CONFIG}"
 # ------------------------------------------------------------- defconfig ---
 
 prepare_defconfig() {
+	stage "90-defconfig-start" "arch=${ARCH}; config=${KERNEL_CONFIG}; variant=${KSU_VARIANT:-none}"
 	group "Preparing defconfig"
 	[ -f "$DEFCONFIG_PATH" ] \
 		|| die "defconfig not found: arch/${ARCH}/configs/${KERNEL_CONFIG}
@@ -29,6 +30,7 @@ prepare_defconfig() {
 	local kver
 	kver=$(kernel_version "$KERNEL_DIR" || echo "0.0")
 
+	stage "91-defconfig-kernelsu" "applying KernelSU and hook configuration"
 	if [ "${KSU_VARIANT:-none}" != "none" ]; then
 		kconf_enable "$DEFCONFIG_PATH" CONFIG_KSU
 		ksu_hook_configs "${KSU_VARIANT}" "${KSU_HOOK_MODE:-auto}" "$DEFCONFIG_PATH" "$kver"
@@ -63,6 +65,7 @@ prepare_defconfig() {
 	is_true "${DISABLE_CC_WERROR:-false}" && kconf_disable "$DEFCONFIG_PATH" CONFIG_CC_WERROR
 
 	# Free-form extras: one CONFIG_x=y per line, or space separated.
+	stage "92-defconfig-extra-options" "extra options present=$([ -n "${EXTRA_DEFCONFIG:-}" ] && echo yes || echo no)"
 	if [ -n "${EXTRA_DEFCONFIG:-}" ]; then
 		local kv
 		# shellcheck disable=SC2086
@@ -84,6 +87,7 @@ prepare_defconfig() {
 		fi
 	fi
 
+	stage "93-defconfig-diff" "showing final defconfig changes"
 	info "defconfig changes:"
 	diff -u "${WORKSPACE}/defconfig.orig" "$DEFCONFIG_PATH" | sed -n '4,$p' | sed 's/^/    /' || true
 	endgroup
@@ -104,6 +108,7 @@ make_args() {
 }
 
 build_kernel() {
+	stage "94-kernel-build-start" "arch=${ARCH}; jobs=$(nproc --all); image=${KERNEL_IMAGE_NAME}"
 	group "Building kernel"
 	export PATH="${CLANG_PATH:-}:${PATH}"
 	export KBUILD_BUILD_HOST=${KBUILD_BUILD_HOST:-Github-Action}
@@ -132,22 +137,26 @@ build_kernel() {
 	fi
 
 	cd "$KERNEL_DIR"
+	stage "95-kernel-defconfig-generation" "make arguments: ${args}"
 	info "make ${args} ${KERNEL_CONFIG}"
 	# shellcheck disable=SC2086
 	make -j"$(nproc --all)" CC=clang $args "${KERNEL_CONFIG}" \
 		|| die "defconfig generation failed"
 
+	stage "96-kernel-compile" "compiler=${cc}; make arguments: ${args}"
 	info "make ${args}"
 	# shellcheck disable=SC2086
 	make -j"$(nproc --all)" CC="$cc" $args \
 		|| die "kernel build failed"
 
+	stage "97-kernel-build-complete" "kernel make completed successfully"
 	endgroup
 }
 
 # --------------------------------------------------------------- verify ---
 
 check_output() {
+	stage "98-kernel-output-check-start" "expected image=${KERNEL_IMAGE_NAME}; arch=${ARCH}"
 	group "Checking build output"
 	local boot="${OUT}/arch/${ARCH}/boot"
 	local image="${boot}/${KERNEL_IMAGE_NAME}"
@@ -156,6 +165,7 @@ check_output() {
        Built files: $(ls "$boot" 2>/dev/null | tr '\n' ' ')
        Check that KERNEL_IMAGE_NAME matches what your kernel produces."
 
+	stage "99-kernel-image-verified" "image=${image}; size=$(du -h "$image" | cut -f1)"
 	ok "kernel image: ${KERNEL_IMAGE_NAME} ($(du -h "$image" | cut -f1))"
 	export_env CHECK_FILE_IS_OK true
 
