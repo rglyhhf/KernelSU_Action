@@ -61,12 +61,12 @@ susfs_apply() {
        Available: $(git ls-remote --heads "$repo" | awk '{print $2}' | sed 's@refs/heads/@@' | tr '\n' ' ')"
 
 	local susfs_dir="${WORKSPACE}/susfs4ksu"
-	stage "42-susfs-clone-start" "cloning ${repo} @ ${branch}"
+	stage "40a-susfs-clone-start" "cloning ${repo} @ ${branch}"
 	rm -rf "$susfs_dir"
 	retry 3 git clone -q --depth=1 -b "$branch" "$repo" "$susfs_dir" \
 		|| die "failed to clone ${repo} @ ${branch}"
 
-	stage "43-susfs-clone-complete" "repository checkout=${susfs_dir}"
+	stage "40b-susfs-clone-complete" "repository checkout=${susfs_dir}"
 	local kp="${susfs_dir}/kernel_patches"
 	[ -d "$kp" ] || die "unexpected susfs4ksu layout: ${kp} missing"
 
@@ -198,7 +198,7 @@ susfs_is_bundled() {
 }
 
 susfs_defconfig() {
-	stage "90-susfs-defconfig-start" "defconfig=$1; discovering enabled SUSFS symbols from Kconfig"
+	stage "52-susfs-defconfig-start" "defconfig=$1; discovering enabled SUSFS symbols from Kconfig"
 	local defconfig=$1
 	local ksu_dir="${KERNEL_DIR}/${KSU_DIR:-KernelSU}"
 
