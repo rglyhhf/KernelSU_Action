@@ -208,13 +208,16 @@ kconf_set_many() {
 # apply_patch FILE [STRIP] -- apply a patch, tolerating already-applied state.
 # Returns 0 when applied or already present, 1 when it genuinely does not fit.
 apply_patch() {
+	stage "PATCH-START" "file=$1; strip=${2:-1}; cwd=$PWD"
 	local patch=$1 strip=${2:-1}
 	[ -f "$patch" ] || die "patch not found: ${patch}"
+	stage "PATCH-DRY-RUN" "checking $(basename "$patch")"
 	if patch -p"$strip" --dry-run --force --silent <"$patch" >/dev/null 2>&1; then
 		patch -p"$strip" --force --no-backup-if-mismatch <"$patch" >/dev/null
 		ok "applied $(basename "$patch")"
 		return 0
 	fi
+	stage "PATCH-REVERSE-CHECK" "checking whether $(basename "$patch") is already applied"
 	if patch -p"$strip" -R --dry-run --force --silent <"$patch" >/dev/null 2>&1; then
 		warn "$(basename "$patch") is already applied, skipping"
 		return 0
@@ -224,6 +227,7 @@ apply_patch() {
 	# successfully matched hunks in the tree when a later hunk rejects; callers
 	# then run their fallback against a half-patched (and often uncompilable)
 	# source file.
+	stage "PATCH-FUZZ-CHECK" "checking $(basename "$patch") with fuzz=3"
 	if patch -p"$strip" --dry-run --force --fuzz=3 --silent <"$patch" >/dev/null 2>&1; then
 		patch -p"$strip" --force --fuzz=3 --no-backup-if-mismatch <"$patch" >/dev/null
 		warn "$(basename "$patch") applied with fuzz; verify the result"
