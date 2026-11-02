@@ -40,6 +40,7 @@ susfs_branch_for() {
 }
 
 susfs_apply() {
+	stage "40-susfs-start" "repository=${SUSFS_REPO:-}; requested_branch=${SUSFS_BRANCH:-auto}"
 	local repo=${SUSFS_REPO:-https://gitlab.com/simonpunk/susfs4ksu.git}
 	local branch=${SUSFS_BRANCH:-auto}
 	local kver
@@ -51,6 +52,7 @@ susfs_apply() {
 		branch=$(susfs_branch_for "$kver")
 		[ -n "$branch" ] || die "no susfs4ksu branch is known for kernel ${kver}; set SUSFS_BRANCH explicitly.
        Available: $(git ls-remote --heads "$repo" | awk '{print $2}' | sed 's@refs/heads/@@' | tr '\n' ' ')"
+		stage "41-susfs-branch-resolved" "kernel=${kver}; branch=${branch}; repository=${repo}"
 		info "kernel ${kver} -> susfs branch '${branch}'"
 	fi
 
@@ -67,9 +69,11 @@ susfs_apply() {
 	[ -d "$kp" ] || die "unexpected susfs4ksu layout: ${kp} missing"
 
 	# 1. Drop in the SUSFS sources. The non-GKI branches carry sus_su.c too.
+	stage "01-before-SUSFS-copy" "source=${kp}; destination=${KERNEL_DIR}"
 	info "copying SUSFS sources into the kernel tree"
 	cp -v "${kp}/fs/"*.c              "${KERNEL_DIR}/fs/"            2>/dev/null || true
 	cp -v "${kp}/include/linux/"*.h   "${KERNEL_DIR}/include/linux/" 2>/dev/null || true
+	stage "02-after-SUSFS-source-copy" "SUSFS C and header sources copied"
 
 	# 2. Patch the kernel itself.
 	local kernel_patch
@@ -80,6 +84,7 @@ susfs_apply() {
 	[ -n "$kernel_patch" ] && [ -f "$kernel_patch" ] \
 		|| die "no SUSFS kernel patch found for kernel version ${kver} in ${kp}"
 
+	stage "42-susfs-patch-selected" "patch=$(basename "$kernel_patch")"
 	info "selected SUSFS kernel patch: $(basename "$kernel_patch")"
 
 	# 3. Patch the KernelSU side -- but only when the variant does not already
@@ -92,6 +97,7 @@ susfs_apply() {
 		[ -f "$adapter" ] \
 			|| die "SUSFS adapter not found: ${adapter}"
 
+		stage "43-susfs-adapter-start" "adapter=${adapter}; kernel=${kver}"
 		info "adapting SUSFS patch for crDroid-15.0 kernel ${kver}"
 
 		python3 "$adapter" "$kernel_patch" "$KERNEL_DIR" \
@@ -100,10 +106,12 @@ susfs_apply() {
 		info "Skipping crDroid-15.0 SUSFS adapter for kernel ${kver}"
 	fi
 
+	stage "44-susfs-adapter-complete" "adapter completed; validating adapted patch"
 	# 4. Verify patch compatibility before modifying the kernel tree.
 	#
 	# A failed dry-run is a hard error. Do not continue with a partially
 	# applied or incompatible SUSFS patch.
+	stage "45-susfs-dry-run-start" "patch=$(basename "$kernel_patch")"
 	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
 
 	if ! (
@@ -116,6 +124,7 @@ susfs_apply() {
        Check the selected SUSFS branch and its kernel adapter."
 	fi
 
+	stage "46-susfs-dry-run-passed" "all SUSFS kernel patch hunks are applicable"
 	# 5. Apply the kernel patch after the dry-run succeeds.
 	(
 		cd "$KERNEL_DIR"
@@ -123,6 +132,7 @@ susfs_apply() {
 	) || die "the SUSFS kernel patch did not apply cleanly.
          Detected kernel ${kver}, used branch '${branch}'."
 
+	stage "47-susfs-kernel-patch-applied" "kernel-side SUSFS patch applied"
 	# 6. Patch the KernelSU side -- but only when the variant does not already
 	#    ship SUSFS support. SukiSU-Ultra's 'builtin' branch, for instance,
 	#    declares CONFIG_KSU_SUSFS itself; applying the patch on top conflicts.
@@ -141,6 +151,7 @@ susfs_apply() {
 	fi
 
 	local ksu_patch="${kp}/KernelSU/10_enable_susfs_for_ksu.patch"
+	stage "48-susfs-ksu-integration" "variant=${KSU_VARIANT:-none}; directory=${ksu_dir}"
 
 	if susfs_is_bundled; then
 		info "${KSU_NAME:-the selected variant} already bundles SUSFS at ref '${KSU_REF_RESOLVED:-}'; skipping 10_enable_susfs_for_ksu.patch"
@@ -165,6 +176,7 @@ susfs_apply() {
 		"${KERNEL_DIR}/include/linux/susfs.h" 2>/dev/null | head -n1)
 	export_env SUSFS_VERSION "${sv:-unknown}"
 	export_env SUSFS_BRANCH_RESOLVED "$branch"
+	stage "49-susfs-complete" "version=${sv:-unknown}; branch=${branch}"
 	ok "SUSFS ${sv:-?} applied from branch ${branch}"
 	summary "| SUSFS | \`${sv:-unknown}\` (branch \`${branch}\`) |"
 	endgroup
@@ -236,6 +248,7 @@ susfs_defconfig() {
 # the comment that introduces the umount syscall, which puts it after
 # do_umount() -- its only forward dependency -- in every tree from 4.9 to 5.4.
 path_umount_apply() {
+	stage "50-path-umount-start" "kernel source=${KERNEL_DIR}"
 	local ns="${KERNEL_DIR}/fs/namespace.c"
 	group "Backporting path_umount()"
 
@@ -342,6 +355,7 @@ sukisu_patch_dir() {
 
 # hide_stuff removes the most obvious KernelSU fingerprints from the build.
 hide_stuff_apply() {
+	stage "60-hide-stuff-start" "enabled=${ENABLE_HIDE_STUFF:-false}"
 	group "Applying hide_stuff"
 	local dir patch
 	dir=$(sukisu_patch_dir)
@@ -354,6 +368,7 @@ hide_stuff_apply() {
 # Manual/syscall hook patches for pre-GKI trees, used when the fork expects the
 # hooks to already exist in the kernel source rather than hooking via kprobes.
 hooks_patch_apply() {
+	stage "70-manual-hooks-start" "variant=${KSU_VARIANT:-none}; mode=${KSU_HOOK_MODE_RESOLVED:-${KSU_HOOK_MODE:-auto}}"
 	local variant=${KSU_VARIANT:-none} kver
 	kver=$(kernel_version "$KERNEL_DIR") || return 0
 
@@ -394,6 +409,7 @@ hooks_patch_apply() {
 # SukiSU-Ultra's Kernel Patch Module support needs a post-link step: the
 # patch_linux tool rewrites the built Image and emits oImage.
 kpm_patch_image() {
+	stage "80-kpm-start" "image=$1"
 	local image=$1
 	group "Applying KPM (patch_linux)"
 	local dir tool
