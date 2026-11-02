@@ -359,3 +359,6 @@ jobs:
 
             Flash the AnyKernel3 zip from a custom recovery.
           files: release/*
+
+      - name: "[135] Release creation complete"
+        run: echo "[135-workflow-release-create-complete] release action finished"
