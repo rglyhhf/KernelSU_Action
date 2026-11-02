@@ -46,6 +46,13 @@ endgroup() {
 	if [ -n "${GITHUB_ACTIONS:-}" ]; then printf '::endgroup::\n'; fi
 }
 
+# stage ID DESCRIPTION -- stable, searchable checkpoints for test-branch logs.
+# Keep this independent of RUNNER_DEBUG so every test build records its path.
+stage() {
+	local id=$1; shift
+	printf '[%s] %s\n' "$id" "$*"
+}
+
 # ------------------------------------------------- GitHub Actions plumbing ---
 
 # export_env KEY VALUE -- set for this shell *and* persist to later steps.
