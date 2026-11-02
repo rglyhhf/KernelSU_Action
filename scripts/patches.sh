@@ -334,6 +334,7 @@ EOF
 	rm -f "$snippet"
 
 	grep -q '^int path_umount' "$ns" || die "path_umount() insertion failed"
+	stage "51-path-umount-complete" "path_umount backport verified in fs/namespace.c"
 	ok "path_umount() backported into fs/namespace.c (kernel ${kver})"
 	summary "| path_umount | backported (kernel ${kver}) |"
 	endgroup
@@ -361,7 +362,9 @@ hide_stuff_apply() {
 	dir=$(sukisu_patch_dir)
 	patch="${dir}/69_hide_stuff.patch"
 	[ -f "$patch" ] || { warn "69_hide_stuff.patch not found in the patch repo; skipping"; endgroup; return 0; }
+	stage "61-hide-stuff-patch" "patch=${patch}"
 	( cd "$KERNEL_DIR" && apply_patch "$patch" 1 ) || warn "hide_stuff did not apply cleanly; continuing"
+	stage "62-hide-stuff-complete" "hide_stuff patch stage finished"
 	endgroup
 }
 
@@ -399,8 +402,10 @@ hooks_patch_apply() {
 
 	# Fall back to the in-repo sed script, which is what this action shipped
 	# historically and still works for the 4.9-5.4 KernelSU 0.9.x hook API.
+	stage "71-manual-hooks-legacy-fallback" "using bundled legacy_ksu_hooks.sh"
 	info "falling back to the bundled legacy hook script"
 	( cd "$KERNEL_DIR" && bash "${REPO_ROOT}/patches/legacy_ksu_hooks.sh" )
+	stage "72-manual-hooks-complete" "manual syscall hook integration finished"
 	endgroup
 }
 
@@ -423,6 +428,7 @@ kpm_patch_image() {
 	out="$(dirname "$image")/oImage"
 	[ -f "$out" ] || die "patch_linux did not produce oImage"
 	mv -f "$out" "$image"
+	stage "81-kpm-complete" "rewritten image=$(basename "$image")"
 	ok "KPM applied to $(basename "$image")"
 	summary "| KPM | applied |"
 	endgroup
@@ -431,6 +437,7 @@ kpm_patch_image() {
 # --------------------------------------------------------------------- main ---
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+	stage "39-patch-dispatch" "operation=${1:-all}; path_umount=${ENABLE_PATH_UMOUNT:-false}; hooks=${KSU_HOOK_MODE_RESOLVED:-none}; susfs=${ENABLE_SUSFS:-false}; hide_stuff=${ENABLE_HIDE_STUFF:-false}; kpm=${ENABLE_KPM:-false}"
 	case "${1:-all}" in
 		susfs)        susfs_apply ;;
 		path_umount)  path_umount_apply ;;
@@ -438,11 +445,12 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
 		hooks)        hooks_patch_apply ;;
 		kpm)          kpm_patch_image "$2" ;;
 		all)
+			stage "40-patch-order" "path_umount and manual hooks precede SUSFS; hide_stuff follows SUSFS"
 			# Order matters and this is the tested one (4.19 + SukiSU builtin
 			# + SUSFS 1.5.5, no rejects):
 			#   path_umount and the hook patches both key off textual anchors
 			#   in files that SUSFS later rewrites, so they go first.
-			if is_true "${ENABLE_PATH_UMOUNT:-false}"; then path_umount_apply; fi
+			if is_true "${ENABLE_PATH_UMOUNT:-false}"; then path_umount_apply; else stage "50-path-umount-skip" "disabled by configuration"; fi
 
 			# Driven by the *resolved* hook mode, not the raw setting, so that
 			# KSU_HOOK_MODE=auto on a pre-GKI kernel still gets its hooks
@@ -452,8 +460,9 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
 				hooks_patch_apply
 			fi
 
-			if is_true "${ENABLE_SUSFS:-false}";      then susfs_apply;      fi
-			if is_true "${ENABLE_HIDE_STUFF:-false}"; then hide_stuff_apply; fi
+			if is_true "${ENABLE_SUSFS:-false}"; then susfs_apply; else stage "40-susfs-skip" "disabled by configuration"; fi
+			if is_true "${ENABLE_HIDE_STUFF:-false}"; then hide_stuff_apply; else stage "60-hide-stuff-skip" "disabled by configuration"; fi
+			stage "88-patch-integration-complete" "all enabled patch integrations finished"
 			;;
 		*) die "unknown patch step '$1'" ;;
 	esac
