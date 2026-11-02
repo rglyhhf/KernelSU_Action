@@ -93,6 +93,7 @@ is_true() {
 # Network flakiness against googlesource/github is common enough in CI that
 # every download in this repo goes through here.
 retry() {
+	stage "NETWORK-RETRY" "attempts=$1; command=${*:2}"
 	local attempts=$1; shift
 	local n=1 delay=5
 	until "$@"; do
@@ -112,6 +113,7 @@ retry() {
 
 # fetch URL DEST -- resumable, retrying download.
 fetch() {
+	stage "DOWNLOAD-START" "url=$1; destination=$2"
 	local url=$1 dest=$2
 	info "fetching ${url}"
 	retry 4 curl -fsSL --connect-timeout 30 --retry 3 --retry-delay 3 -o "$dest" "$url" \
@@ -126,6 +128,7 @@ fetch_stdout() {
 
 # extract_archive FILE DESTDIR -- handle .tar.gz/.tar.xz/.tar.zst/.zip uniformly.
 extract_archive() {
+	stage "ARCHIVE-EXTRACT" "archive=$1; destination=$2"
 	local file=$1 dest=$2
 	mkdir -p "$dest"
 	case "$file" in
@@ -170,6 +173,7 @@ ref_exists() {
 
 # kconf_set FILE KEY VALUE   (KEY without the CONFIG_ prefix is auto-prefixed)
 kconf_set() {
+	stage "KCONFIG-UPDATE" "file=$1; key=$2; value=$3"
 	local file=$1 key=$2 val=$3
 	case "$key" in CONFIG_*) ;; *) key="CONFIG_${key}" ;; esac
 	[ -f "$file" ] || die "defconfig not found: ${file}"
