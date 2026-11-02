@@ -8,12 +8,15 @@ set -euo pipefail
 WORKSPACE=${WORKSPACE:?WORKSPACE must be set}
 KERNEL_DIR="${WORKSPACE}/android-kernel"
 
+stage "20-kernel-source-start" "repository=${KERNEL_SOURCE}; ref=${KERNEL_SOURCE_BRANCH}"
 group "Cloning kernel source"
 info "${KERNEL_SOURCE} @ ${KERNEL_SOURCE_BRANCH}"
 
+stage "21-kernel-source-ref-check" "validating requested kernel ref"
 ref_exists "$KERNEL_SOURCE" "$KERNEL_SOURCE_BRANCH" \
 	|| die "branch/tag '${KERNEL_SOURCE_BRANCH}' does not exist in ${KERNEL_SOURCE}"
 
+stage "22-kernel-source-clone" "removing old tree and cloning requested ref"
 rm -rf "$KERNEL_DIR"
 retry 3 git clone -q --recursive --depth=1 \
 	-b "$KERNEL_SOURCE_BRANCH" "$KERNEL_SOURCE" "$KERNEL_DIR" \
@@ -26,10 +29,12 @@ if [ -f "${KERNEL_DIR}/.git/shallow" ]; then
 	debug "kernel tree is shallow; that is fine for building"
 fi
 
+stage "23-kernel-source-version" "reading VERSION and PATCHLEVEL from kernel Makefile"
 KVER=$(kernel_version "$KERNEL_DIR") \
 	|| die "could not read VERSION/PATCHLEVEL from ${KERNEL_DIR}/Makefile -- is this a kernel tree?"
 export_env KERNEL_VERSION "$KVER"
 export_env KERNEL_DIR "$KERNEL_DIR"
+stage "24-kernel-source-ready" "Linux ${KVER}; directory=${KERNEL_DIR}"
 ok "kernel source ready (Linux ${KVER})"
 summary "| Kernel | \`${KERNEL_SOURCE##*/}\` @ \`${KERNEL_SOURCE_BRANCH}\` (Linux ${KVER}) |"
 
