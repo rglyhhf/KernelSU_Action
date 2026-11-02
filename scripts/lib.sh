@@ -119,6 +119,7 @@ fetch() {
 	retry 4 curl -fsSL --connect-timeout 30 --retry 3 --retry-delay 3 -o "$dest" "$url" \
 		|| die "failed to download ${url}"
 	[ -s "$dest" ] || die "downloaded file is empty: ${url}"
+	stage "DOWNLOAD-COMPLETE" "destination=$dest; bytes=$(stat -c%s "$dest" 2>/dev/null || wc -c < "$dest")"
 }
 
 # fetch_stdout URL -- print a URL's body, retrying. Used for small text files.
@@ -140,6 +141,7 @@ extract_archive() {
 		*.zip)             unzip -qo "$file" -d "$dest" ;;
 		*) die "don't know how to extract ${file}" ;;
 	esac
+	stage "ARCHIVE-EXTRACT-COMPLETE" "archive=$file; destination=$dest"
 }
 
 # ---------------------------------------------------------------- git refs ---
