@@ -12,6 +12,7 @@ BOOT_OUT="${KERNEL_DIR}/out/arch/${ARCH}/boot"
 AK3="${WORKSPACE}/AnyKernel3"
 
 make_anykernel3() {
+	stage "110-package-anykernel-start" "custom=${USE_CUSTOM_ANYKERNEL3:-false}; image=${KERNEL_IMAGE_NAME}"
 	group "Building AnyKernel3 package"
 	rm -rf "$AK3"
 
@@ -48,11 +49,13 @@ make_anykernel3() {
 	fi
 	rm -rf "${AK3}/.git" "${AK3}/.github" "${AK3}/README.md"
 
+	stage "111-package-anykernel-complete" "AnyKernel3 directory=${AK3}"
 	ok "AnyKernel3 package assembled"
 	endgroup
 }
 
 make_boot_image() {
+	stage "112-package-bootimg-start" "enabled=${BUILD_BOOT_IMG:-false}"
 	is_true "${BUILD_BOOT_IMG:-false}" || return 0
 	group "Repacking boot image"
 
@@ -79,12 +82,14 @@ make_boot_image() {
 		|| die "mkbootimg failed"
 	[ -s "${WORKSPACE}/boot.img" ] || die "boot.img was not produced"
 
+	stage "113-package-bootimg-complete" "size=$(du -h "${WORKSPACE}/boot.img" | cut -f1)"
 	ok "boot.img built ($(du -h "${WORKSPACE}/boot.img" | cut -f1))"
 	export_env MAKE_BOOT_IMAGE_IS_OK true
 	endgroup
 }
 
 write_summary() {
+	stage "114-package-summary" "collecting artifact names and sizes"
 	summary ""
 	summary "### Build artifacts"
 	summary ""
@@ -99,6 +104,7 @@ write_summary() {
 }
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+	stage "109-package-start" "requested operation=${1:-all}"
 	case "${1:-all}" in
 		anykernel3) make_anykernel3 ;;
 		bootimg)    make_boot_image ;;
