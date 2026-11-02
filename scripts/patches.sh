@@ -72,18 +72,20 @@ susfs_apply() {
 	cp -v "${kp}/include/linux/"*.h   "${KERNEL_DIR}/include/linux/" 2>/dev/null || true
 
 	# 2. Patch the kernel itself.
-	local kernel_patch="${kp}/50_add_susfs_in_${branch}.patch"
-	[ -f "$kernel_patch" ] || {
-		# Fall back to whatever 50_* patch the branch actually ships.
-		kernel_patch=$(find "$kp" -maxdepth 1 -name '50_add_susfs_in_*.patch' | head -n1)
-	}
+	local kernel_patch
+	kernel_patch=$(find "$kp" -maxdepth 1 -type f \
+				   -name "50_add_susfs_in_kernel-${kver}*.patch" \
+				   -print | sort | head -n 1)
+
 	[ -n "$kernel_patch" ] && [ -f "$kernel_patch" ] \
-		|| die "no 50_add_susfs_in_*.patch found in ${kp}"
+		|| die "no SUSFS kernel patch found for kernel version ${kver} in ${kp}"
+
+	info "selected SUSFS kernel patch: $(basename "$kernel_patch")"
 
 	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
 		|| die "the SUSFS kernel patch did not apply cleanly.
-       This usually means SUSFS_BRANCH does not match your kernel. Detected
-       kernel ${kver}, used branch '${branch}'."
+		   Detected kernel version: ${kver}.
+		   Selected patch: $(basename "$kernel_patch")."
 
 	# 3. Patch the KernelSU side -- but only when the variant does not already
 	#    ship SUSFS support. SukiSU-Ultra's 'builtin' branch, for instance,
