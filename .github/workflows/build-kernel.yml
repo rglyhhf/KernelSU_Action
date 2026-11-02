@@ -126,8 +126,10 @@ jobs:
 
     steps:
       - name: "[00] Checkout source"
-        run: echo "[00-workflow-checkout] checking out test-branch sources"
+        run: echo "[00-workflow-checkout-start] checking out test-branch sources"
       - uses: actions/checkout@v4
+      - name: "[00] Checkout complete"
+        run: echo "[00-workflow-checkout-complete] source checkout finished"
 
       - name: Resolve configuration
         run: |
@@ -153,7 +155,7 @@ jobs:
 
       - name: "[04] After disk cleanup"
         if: env.REMOVE_UNUSED_PACKAGES == 'true'
-        run: echo "[04-workflow-disk-cleanup-complete] runner cleanup finished"
+        run: echo "[03-workflow-disk-cleanup-complete] runner cleanup finished"
 
       - name: Add swap space
         run: |
