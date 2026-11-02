@@ -82,11 +82,6 @@ susfs_apply() {
 
 	info "selected SUSFS kernel patch: $(basename "$kernel_patch")"
 
-	( cd "$KERNEL_DIR" && apply_patch "$kernel_patch" 1 ) \
-		|| die "the SUSFS kernel patch did not apply cleanly.
-		   Detected kernel version: ${kver}.
-		   Selected patch: $(basename "$kernel_patch")."
-
 	# 3. Patch the KernelSU side -- but only when the variant does not already
 	#
 	# The adapter modifies the selected patch according to the actual kernel
