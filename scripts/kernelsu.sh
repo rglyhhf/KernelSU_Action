@@ -83,13 +83,14 @@ ksu_install() {
 	local repo setup_ref dir modern_ref legacy_ref susfs_refs name
 	IFS='|' read -r repo setup_ref dir modern_ref legacy_ref susfs_refs name <<<"$(ksu_registry "$variant")"
 
+	# Decide which ref to check out before logging it; set -u treats an
+	# expansion of kver before its assignment as a fatal error.
+	local kver ref=$requested_ref
+	kver=$(kernel_version "$KERNEL_DIR" || echo "0.0")
+
 	stage "31-kernelsu-registry-resolved" "name=${name}; repository=${repo}; setup_ref=${setup_ref}; kernel=${kver}"
 	group "Installing ${name}"
 	info "repository: ${repo}"
-
-	# Decide which ref to check out.
-	local kver ref=$requested_ref
-	kver=$(kernel_version "$KERNEL_DIR" || echo "0.0")
 	if [ -z "$ref" ]; then
 		if ver_ge "$kver" "5.10"; then
 			ref=$modern_ref
