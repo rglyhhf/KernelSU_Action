@@ -198,6 +198,7 @@ susfs_is_bundled() {
 }
 
 susfs_defconfig() {
+	stage "90-susfs-defconfig-start" "defconfig=$1; discovering enabled SUSFS symbols from Kconfig"
 	local defconfig=$1
 	local ksu_dir="${KERNEL_DIR}/${KSU_DIR:-KernelSU}"
 
