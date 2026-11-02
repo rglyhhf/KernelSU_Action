@@ -88,6 +88,47 @@ susfs_apply() {
 		   Selected patch: $(basename "$kernel_patch")."
 
 	# 3. Patch the KernelSU side -- but only when the variant does not already
+	#
+	# The adapter modifies the selected patch according to the actual kernel
+	# source tree. Do not apply the patch if adaptation fails.
+	if [ "$kver" = "4.9" ]; then
+		local adapter="${REPO_ROOT}/patches/adapt_crdroid-15.0_susfs.py"
+
+		[ -f "$adapter" ] \
+			|| die "SUSFS adapter not found: ${adapter}"
+
+		info "adapting SUSFS patch for crDroid-15.0 kernel ${kver}"
+
+		python3 "$adapter" "$kernel_patch" "$KERNEL_DIR" \
+			|| die "failed to adapt SUSFS patch"
+	else
+		info "Skipping crDroid-15.0 SUSFS adapter for kernel ${kver}"
+	fi
+
+	# 4. Verify patch compatibility before modifying the kernel tree.
+	#
+	# A failed dry-run is a hard error. Do not continue with a partially
+	# applied or incompatible SUSFS patch.
+	info "checking SUSFS patch compatibility: $(basename "$kernel_patch")"
+
+	if ! (
+		cd "$KERNEL_DIR"
+		patch -l -p1 --dry-run --force --no-backup-if-mismatch \
+			< "$kernel_patch"
+	); then
+		die "SUSFS patch is incompatible with this kernel; refusing to continue.
+       Detected kernel ${kver}, used branch '${branch}'.
+       Check the selected SUSFS branch and its kernel adapter."
+	fi
+
+	# 5. Apply the kernel patch after the dry-run succeeds.
+	(
+		cd "$KERNEL_DIR"
+		patch -l -p1 --force --no-backup-if-mismatch < "$kernel_patch"
+	) || die "the SUSFS kernel patch did not apply cleanly.
+         Detected kernel ${kver}, used branch '${branch}'."
+
+	# 6. Patch the KernelSU side -- but only when the variant does not already
 	#    ship SUSFS support. SukiSU-Ultra's 'builtin' branch, for instance,
 	#    declares CONFIG_KSU_SUSFS itself; applying the patch on top conflicts.
 	local ksu_dir="${KERNEL_DIR}/${KSU_DIR:-KernelSU}"
