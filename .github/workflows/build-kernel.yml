@@ -125,7 +125,7 @@ jobs:
       IN_EXTRA_DEFCONFIG: ${{ inputs.extra_defconfig }}
 
     steps:
-      - name: [00] Checkout source
+      - name: "[00] Checkout source"
         run: echo "[00-workflow-checkout] checking out test-branch sources"
       - uses: actions/checkout@v4
 
@@ -135,7 +135,7 @@ jobs:
           bash scripts/config.sh
           echo "[02-workflow-config-complete] configuration step completed"
 
-      - name: [03] Before disk cleanup
+      - name: "[03] Before disk cleanup"
         if: env.REMOVE_UNUSED_PACKAGES == 'true'
         run: echo "[03-workflow-disk-cleanup-start] removing unused runner packages"
 
@@ -150,6 +150,10 @@ jobs:
           large-packages: true
           docker-images: true
           swap-storage: false
+
+      - name: "[04] After disk cleanup"
+        if: env.REMOVE_UNUSED_PACKAGES == 'true'
+        run: echo "[04-workflow-disk-cleanup-complete] runner cleanup finished"
 
       - name: Add swap space
         run: |
@@ -203,7 +207,7 @@ jobs:
           bash scripts/patches.sh all
           echo "[89-workflow-patches-complete]"
 
-      - name: [100] Before ccache setup
+      - name: "[100] Before ccache setup"
         if: env.ENABLE_CCACHE == 'true'
         run: echo "[100-workflow-ccache-start] configuring compiler cache"
 
@@ -213,6 +217,10 @@ jobs:
         with:
           key: kernel-${{ env.DEVICE }}-${{ env.KSU_VARIANT }}-${{ env.KERNEL_VERSION }}
           max-size: 2G
+
+      - name: "[100] After ccache setup"
+        if: env.ENABLE_CCACHE == 'true'
+        run: echo "[100-workflow-ccache-complete] compiler cache configured"
 
       - name: Build kernel
         run: |
@@ -240,7 +248,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
           echo "[117-workflow-metadata-complete] metadata exported"
 
-      - name: [118] Before kernel image upload
+      - name: "[118] Before kernel image upload"
         run: echo "[118-workflow-kernel-upload-start]"
       - name: Upload kernel image
         uses: actions/upload-artifact@v4
@@ -249,7 +257,10 @@ jobs:
           path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }}
           if-no-files-found: error
 
-      - name: [119] Before AnyKernel3 upload
+      - name: "[118] After kernel image upload"
+        run: echo "[118-workflow-kernel-upload-complete]"
+
+      - name: "[119] Before AnyKernel3 upload"
         run: echo "[119-workflow-anykernel-upload-start]"
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v4
@@ -258,7 +269,10 @@ jobs:
           path: kernel_workspace/AnyKernel3/*
           if-no-files-found: error
 
-      - name: [120] Before DTBO upload
+      - name: "[119] After AnyKernel3 upload"
+        run: echo "[119-workflow-anykernel-upload-complete]"
+
+      - name: "[120] Before DTBO upload"
         if: env.CHECK_DTBO_IS_OK == 'true'
         run: echo "[120-workflow-dtbo-upload-start]"
       - name: Upload DTBO image
@@ -268,7 +282,11 @@ jobs:
           name: dtbo-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
           path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}/boot/dtbo.img
 
-      - name: [121] Before boot image upload
+      - name: "[120] After DTBO upload"
+        if: env.CHECK_DTBO_IS_OK == 'true'
+        run: echo "[120-workflow-dtbo-upload-complete]"
+
+      - name: "[121] Before boot image upload"
         if: env.MAKE_BOOT_IMAGE_IS_OK == 'true'
         run: echo "[121-workflow-boot-upload-start]"
       - name: Upload boot image
@@ -277,6 +295,13 @@ jobs:
         with:
           name: boot${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
           path: kernel_workspace/boot.img
+
+      - name: "[121] After boot image upload"
+        if: env.MAKE_BOOT_IMAGE_IS_OK == 'true'
+        run: echo "[121-workflow-boot-upload-complete]"
+
+      - name: "[122] Build job complete"
+        run: echo "[122-workflow-build-job-complete] all requested build and upload steps finished"
 
   # Publishing is a separate job so the build itself runs with a read-only
   # token; only this job gets contents:write, and only when asked for.
