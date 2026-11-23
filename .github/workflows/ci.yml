@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    paths: ['scripts/**', 'patches/**', '.github/workflows/**', 'config.env', 'config/**']
+    paths: ['scripts/**', 'patches/**', '.github/workflows/**', 'config.env', 'config/**', 'tests/**']
   pull_request:
-    paths: ['scripts/**', 'patches/**', '.github/workflows/**', 'config.env', 'config/**']
+    paths: ['scripts/**', 'patches/**', '.github/workflows/**', 'config.env', 'config/**', 'tests/**']
   workflow_dispatch:
 
 permissions:
@@ -21,7 +21,10 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends shellcheck
-          shellcheck --severity=warning --external-sources scripts/*.sh patches/*.sh
+          shellcheck --severity=warning --external-sources scripts/*.sh patches/*.sh tests/*.sh
+
+      - name: SUSFS compatibility regressions
+        run: REQUIRE_CC=true bash tests/susfs_compat.sh
 
       - name: actionlint
         run: |

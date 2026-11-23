@@ -28,7 +28,7 @@ info() { printf '%s[*]%s %s\n' "$_C_BLU" "$_C_RST" "$*"; }
 ok()   { printf '%s[+]%s %s\n' "$_C_GRN" "$_C_RST" "$*"; }
 warn() {
 	printf '%s[!]%s %s\n' "$_C_YEL" "$_C_RST" "$*" >&2
-	[ -n "${GITHUB_ACTIONS:-}" ] && printf '::warning::%s\n' "$*" || true
+	[ -n "${GITHUB_ACTIONS:-}" ] && printf '::warning::%s\n' "$*" >&2 || true
 }
 debug() { [ -n "${RUNNER_DEBUG:-}" ] && printf '%s[d] %s%s\n' "$_C_DIM" "$*" "$_C_RST" >&2 || true; }
 
@@ -93,7 +93,8 @@ is_true() {
 # Network flakiness against googlesource/github is common enough in CI that
 # every download in this repo goes through here.
 retry() {
-	stage "NETWORK-RETRY" "attempts=$1; command=${*:2}"
+	# stdout may be a downloaded script or a captured path, so log to stderr.
+	stage "NETWORK-RETRY" "attempts=$1; command=${*:2}" >&2
 	local attempts=$1; shift
 	local n=1 delay=5
 	until "$@"; do

@@ -140,18 +140,6 @@ susfs_apply() {
 	#    declares CONFIG_KSU_SUSFS itself; applying the patch on top conflicts.
 	local ksu_dir="${KERNEL_DIR}/${KSU_DIR:-KernelSU}"
 
-	# BakaSU SUSFS API header fix
-	if [ "${KSU_VARIANT:-none}" = "resukisu" ]; then
-		local dispatch="${ksu_dir}/kernel/supercall/dispatch.c"
-
-		if [ -f "$dispatch" ] &&
-		   grep -q '#include <linux/susfs_def.h>' "$dispatch" &&
-		   ! grep -q '#include <linux/susfs.h>' "$dispatch"; then
-			sed -i 's@#include <linux/susfs_def.h>@#include <linux/susfs.h>@' "$dispatch"
-			info "BakaSU SUSFS API declarations enabled in dispatch.c"
-		fi
-	fi
-
 	local ksu_patch="${kp}/KernelSU/10_enable_susfs_for_ksu.patch"
 	stage "48-susfs-ksu-integration" "variant=${KSU_VARIANT:-none}; directory=${ksu_dir}"
 
@@ -172,6 +160,10 @@ susfs_apply() {
 		}
 	fi
 
+	if [ "${KSU_VARIANT:-none}" = "resukisu" ]; then
+		susfs_resukisu_compat "$ksu_dir"
+	fi
+
 	# Record the SUSFS version for the build summary.
 	local sv
 	sv=$(sed -nE 's/.*SUSFS_VERSION[[:space:]]+"([^"]+)".*/\1/p' \
@@ -182,6 +174,23 @@ susfs_apply() {
 	ok "SUSFS ${sv:-?} applied from branch ${branch}"
 	summary "| SUSFS | \`${sv:-unknown}\` (branch \`${branch}\`) |"
 	endgroup
+}
+
+# ReSukiSU main also supports UID-filter commands absent from older SUSFS
+# ports. Guard the whole handlers, including their function calls; defining
+# only the command numbers would leave unresolved symbols.
+susfs_resukisu_compat() {
+	local ksu_dir=$1 dispatch="$1/kernel/supercall/dispatch.c"
+	[ -f "$dispatch" ] || die "ReSukiSU command dispatcher missing: ${dispatch}"
+
+	if grep -q '#include <linux/susfs_def.h>' "$dispatch" &&
+	   ! grep -q '#include <linux/susfs.h>' "$dispatch"; then
+		sed -i 's@#include <linux/susfs_def.h>@#include <linux/susfs.h>@' "$dispatch"
+		info "ReSukiSU SUSFS API declarations enabled in dispatch.c"
+	fi
+
+	( cd "$ksu_dir" && apply_patch "${REPO_ROOT}/patches/resukisu_susfs_uid_filters.patch" 1 ) \
+		|| die "cannot adapt ReSukiSU UID-filter commands to the selected SUSFS API"
 }
 
 # Does the selected variant+ref already contain SUSFS?
@@ -233,6 +242,15 @@ susfs_defconfig() {
 			# off in the reference builds.
 			KSU_SUSFS_SUS_SU | KSU_SUSFS_SUS_OVERLAYFS)
 				kconf_disable "$defconfig" "CONFIG_${s}" ;;
+			KSU_SUSFS_PRIORITY_UID_FILTER)
+				if grep -qE '^#define[[:space:]]+CMD_SUSFS_SET_PRIORITY_UID_FILTER[[:space:]]' \
+					"${KERNEL_DIR}/include/linux/susfs_def.h" &&
+				   grep -q 'susfs_set_priority_uid_filter' "${KERNEL_DIR}/include/linux/susfs.h"; then
+					kconf_enable "$defconfig" "CONFIG_${s}"; enabled=$((enabled + 1))
+				else
+					kconf_disable "$defconfig" "CONFIG_${s}"
+					info "disabled ${s}: selected SUSFS port has no priority UID-filter API"
+				fi ;;
 			*)
 				kconf_enable "$defconfig" "CONFIG_${s}"; enabled=$((enabled + 1)) ;;
 		esac
