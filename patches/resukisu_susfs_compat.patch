@@ -1,0 +1,47 @@
+diff --git a/kernel/supercall/dispatch.c b/kernel/supercall/dispatch.c
+--- a/kernel/supercall/dispatch.c
++++ b/kernel/supercall/dispatch.c
+@@ -1121,4 +1121,6 @@
++#ifdef CMD_SUSFS_SET_SUS_PATH_UID_FILTER
+     case CMD_SUSFS_SET_SUS_PATH_UID_FILTER: {
+         susfs_set_sus_path_uid_filter(arg);
+         return 0;
+     }
++#endif
+@@ -1176,1 +1178,1 @@
+-#ifdef CONFIG_KSU_SUSFS_PRIORITY_UID_FILTER
++#if defined(CONFIG_KSU_SUSFS_PRIORITY_UID_FILTER) && defined(CMD_SUSFS_SET_PRIORITY_UID_FILTER)
+diff --git a/kernel/manager/throne_tracker.c b/kernel/manager/throne_tracker.c
+--- a/kernel/manager/throne_tracker.c
++++ b/kernel/manager/throne_tracker.c
+@@ -1,1 +1,2 @@
+-#include "ksu.h"
++#include "ksu.h"
++#include "../include/ksu_susfs_compat.h"
+@@ -366,3 +367,3 @@
+-#ifdef CONFIG_KSU_SUSFS_PRIORITY_UID_FILTER
++#if defined(CONFIG_KSU_SUSFS_PRIORITY_UID_FILTER) && KSU_SUSFS_HAS_SUSFS_PARSE_PRIORITY_APP_STRINGS
+     // Refresh after tracking completes, including deferred scans.
+     susfs_parse_priority_app_strings();
+@@ -370,3 +371,3 @@
+-#ifdef CONFIG_KSU_SUSFS_SUS_PATH
++#if defined(CONFIG_KSU_SUSFS_SUS_PATH) && KSU_SUSFS_HAS_SUSFS_PARSE_SUS_PATH_APP_STRINGS
+     // Renew the sus path uid bitmap filter
+     susfs_parse_sus_path_app_strings();
+diff --git a/kernel/selinux/sepolicy.c b/kernel/selinux/sepolicy.c
+--- a/kernel/selinux/sepolicy.c
++++ b/kernel/selinux/sepolicy.c
+@@ -17,1 +17,2 @@
+-#include "sepolicy.h"
++#include "sepolicy.h"
++#include "../include/ksu_susfs_compat.h"
+@@ -356,3 +357,3 @@
+-#ifdef CONFIG_KSU_SUSFS
++#if defined(CONFIG_KSU_SUSFS) && KSU_SUSFS_HAS_SUSFS_ADD_SUS_AVD_ALLOWED_BY_TYPE
+         susfs_add_sus_avd_allowed_by_type(src->value, tgt->value, cls->value, node->datum.u.data);
+ #endif // #ifdef CONFIG_KSU_SUSFS
+@@ -783,3 +784,3 @@
+-#ifdef CONFIG_KSU_SUSFS
++#if defined(CONFIG_KSU_SUSFS) && KSU_SUSFS_HAS_SUSFS_ADD_SUS_TYPE
+     susfs_add_sus_type(type_name, type->value);
+ #endif // #ifdef CONFIG_KSU_SUSFS

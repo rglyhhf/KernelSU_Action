@@ -176,9 +176,10 @@ susfs_apply() {
 	endgroup
 }
 
-# ReSukiSU main also supports UID-filter commands absent from older SUSFS
-# ports. Guard the whole handlers, including their function calls; defining
-# only the command numbers would leave unresolved symbols.
+# ReSukiSU main has optional APIs absent from older SUSFS ports. Guard command
+# handlers and callbacks per API while retaining the port's existing features.
+# ReSukiSU declares some callbacks itself, so inspect the SUSFS implementation
+# before enabling them; declarations alone cannot satisfy the linker.
 susfs_resukisu_compat() {
 	local ksu_dir=$1 dispatch="$1/kernel/supercall/dispatch.c"
 	[ -f "$dispatch" ] || die "ReSukiSU command dispatcher missing: ${dispatch}"
@@ -189,8 +190,25 @@ susfs_resukisu_compat() {
 		info "ReSukiSU SUSFS API declarations enabled in dispatch.c"
 	fi
 
-	( cd "$ksu_dir" && apply_patch "${REPO_ROOT}/patches/resukisu_susfs_uid_filters.patch" 1 ) \
-		|| die "cannot adapt ReSukiSU UID-filter commands to the selected SUSFS API"
+	local compat="${ksu_dir}/kernel/include/ksu_susfs_compat.h" api has_api
+	[ -f "${KERNEL_DIR}/fs/susfs.c" ] || die "SUSFS implementation missing: fs/susfs.c"
+	mkdir -p "${ksu_dir}/kernel/include"
+	{
+		printf '#ifndef KSU_SUSFS_COMPAT_H\n#define KSU_SUSFS_COMPAT_H\n'
+		printf '#ifdef CONFIG_KSU_SUSFS\n#include <linux/susfs.h>\n#endif\n'
+		for api in susfs_parse_sus_path_app_strings susfs_parse_priority_app_strings \
+			susfs_add_sus_avd_allowed_by_type susfs_add_sus_type; do
+			has_api=0
+			if grep -qE "^(void|int)[[:space:]]+${api}[[:space:]]*\\(" "${KERNEL_DIR}/fs/susfs.c"; then
+				has_api=1
+			fi
+			printf '#define KSU_SUSFS_HAS_%s %s\n' "${api^^}" "$has_api"
+		done
+		printf '#endif\n'
+	} > "$compat"
+
+	( cd "$ksu_dir" && apply_patch "${REPO_ROOT}/patches/resukisu_susfs_compat.patch" 1 ) \
+		|| die "cannot adapt ReSukiSU optional hooks to the selected SUSFS API"
 }
 
 # Does the selected variant+ref already contain SUSFS?

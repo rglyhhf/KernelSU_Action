@@ -5,7 +5,7 @@ REPO_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 TEST_ROOT=$(mktemp -d)
 trap 'rm -rf "$TEST_ROOT"' EXIT
 export KERNEL_DIR="$TEST_ROOT/kernel"
-mkdir -p "$KERNEL_DIR/KernelSU/kernel/supercall" "$KERNEL_DIR/include/linux" "$KERNEL_DIR/fs" "$KERNEL_DIR/drivers"
+mkdir -p "$KERNEL_DIR/KernelSU/kernel/supercall" "$KERNEL_DIR/KernelSU/kernel/manager" "$KERNEL_DIR/KernelSU/kernel/selinux" "$KERNEL_DIR/include/linux" "$KERNEL_DIR/fs" "$KERNEL_DIR/drivers"
 ln -s ../KernelSU/kernel "$KERNEL_DIR/drivers/kernelsu"
 # shellcheck source=scripts/patches.sh
 . "$REPO_ROOT/scripts/patches.sh"
@@ -31,7 +31,11 @@ grep -q 'attempt 1/2 failed' "$TEST_ROOT/download-log"
 
 # Apply to a representative upstream dispatcher, then verify idempotence.
 cp "$REPO_ROOT/tests/fixtures/resukisu_uid_dispatch.c" "$KERNEL_DIR/KernelSU/kernel/supercall/dispatch.c"
+cp "$REPO_ROOT/tests/fixtures/resukisu_uid_tracker.c" "$KERNEL_DIR/KernelSU/kernel/manager/throne_tracker.c"
+cp "$REPO_ROOT/tests/fixtures/resukisu_susfs_sepolicy.c" "$KERNEL_DIR/KernelSU/kernel/selinux/sepolicy.c"
+touch "$KERNEL_DIR/fs/susfs.c" "$KERNEL_DIR/KernelSU/kernel/manager/ksu.h" "$KERNEL_DIR/KernelSU/kernel/selinux/sepolicy.h"
 susfs_resukisu_compat "$KERNEL_DIR/KernelSU"
+cp "$KERNEL_DIR/KernelSU/kernel/include/ksu_susfs_compat.h" "$TEST_ROOT/compat-legacy.h"
 cp "$KERNEL_DIR/KernelSU/kernel/supercall/dispatch.c" "$TEST_ROOT/dispatch-once.c"
 susfs_resukisu_compat "$KERNEL_DIR/KernelSU"
 cmp "$TEST_ROOT/dispatch-once.c" "$KERNEL_DIR/KernelSU/kernel/supercall/dispatch.c"
@@ -59,18 +63,34 @@ grep -qx 'CONFIG_KSU_SUSFS_PRIORITY_UID_FILTER=y' "$TEST_ROOT/defconfig"
 if command -v cc >/dev/null; then
     cat > "$TEST_ROOT/dispatch-test.c" <<'C'
 #define __user
+#define CONFIG_KSU_SUSFS
 #define CONFIG_KSU_SUSFS_SUS_PATH
 #define CONFIG_KSU_SUSFS_PRIORITY_UID_FILTER
 #define CMD_SUSFS_ADD_SUS_PATH 1
 static int calls;
+typedef unsigned int u32;
+struct value { u32 value; };
+struct value value_data = {1};
+struct value *src = &value_data, *tgt = &value_data, *cls = &value_data, *type = &value_data;
+struct avd { struct { struct { u32 data; } u; } datum; } node_data = {{{1}}};
+struct avd *node = &node_data;
+const char *type_name = "test";
 static void susfs_add_sus_path(void **arg) { (void)arg; calls += 1; }
 #ifdef TEST_UID_FILTERS
 #define CMD_SUSFS_SET_SUS_PATH_UID_FILTER 2
 #define CMD_SUSFS_SET_PRIORITY_UID_FILTER 3
 static void susfs_set_sus_path_uid_filter(void **arg) { (void)arg; calls += 10; }
 static void susfs_set_priority_uid_filter(void **arg) { (void)arg; calls += 100; }
+void susfs_parse_sus_path_app_strings(void) { calls += 1000; }
+void susfs_parse_priority_app_strings(void) { calls += 10000; }
+int susfs_add_sus_avd_allowed_by_type(u32 s, u32 t, u32 c, u32 a)
+{ (void)s; (void)t; (void)c; (void)a; calls += 100000; return 0; }
+int susfs_add_sus_type(const char *name, u32 v)
+{ (void)name; (void)v; calls += 1000000; return 0; }
 #endif
 #include "dispatch.c"
+#include "manager/throne_tracker.c"
+#include "selinux/sepolicy.c"
 int main(void)
 {
     void *arg = 0;
@@ -78,17 +98,29 @@ int main(void)
     if (calls != 1) return 1;
     ksu_handle_susfs_cmd(2, &arg);
     ksu_handle_susfs_cmd(3, &arg);
+    compat_refresh_uids();
+    compat_avd_hook();
+    compat_type_hook();
 #ifdef TEST_UID_FILTERS
-    return calls != 111;
+    return calls != 1111111;
 #else
     return calls != 1;
 #endif
 }
 C
     cp "$TEST_ROOT/dispatch-once.c" "$TEST_ROOT/dispatch.c"
-    cc -std=c99 -Wall -Wextra -Werror "$TEST_ROOT/dispatch-test.c" -o "$TEST_ROOT/legacy"
+    cc -std=c99 -Wall -Wextra -Werror -I "$KERNEL_DIR/KernelSU/kernel" -I "$KERNEL_DIR/include" \
+        "$TEST_ROOT/dispatch-test.c" -o "$TEST_ROOT/legacy"
     "$TEST_ROOT/legacy"
-    cc -std=c99 -Wall -Wextra -Werror -DTEST_UID_FILTERS "$TEST_ROOT/dispatch-test.c" -o "$TEST_ROOT/modern"
+    cat > "$KERNEL_DIR/fs/susfs.c" <<'API'
+void susfs_parse_sus_path_app_strings(void) {}
+void susfs_parse_priority_app_strings(void) {}
+int susfs_add_sus_avd_allowed_by_type(unsigned int s, unsigned int t, unsigned int c, unsigned int a) { return 0; }
+int susfs_add_sus_type(const char *name, unsigned int value) { return 0; }
+API
+    susfs_resukisu_compat "$KERNEL_DIR/KernelSU"
+    cc -std=c99 -Wall -Wextra -Werror -DTEST_UID_FILTERS -I "$KERNEL_DIR/KernelSU/kernel" -I "$KERNEL_DIR/include" \
+        "$TEST_ROOT/dispatch-test.c" -o "$TEST_ROOT/modern"
     "$TEST_ROOT/modern"
 else
     [ "${REQUIRE_CC:-false}" != true ] || die "C compiler required for compatibility regression tests"
